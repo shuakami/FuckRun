@@ -1,0 +1,21 @@
+[package]
+name = "fuckrun"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name"]
+description = "A simple and efficient process management system"
+
+[dependencies]
+tokio = { version = "1.32.0", features = ["full"] }  # 异步运行时
+clap = { version = "4.4.6", features = ["derive"] } # 命令行参数解析
+serde = { version = "1.0.189", features = ["derive"] } # 序列化
+serde_json = "1.0.107" # JSON支持
+log = "0.4.20"  # 日志
+env_logger = "0.10.0"  # 日志实现
+anyhow = "1.0.75"  # 错误处理
+reqwest = { version = "0.11.22", features = ["json"] }  # HTTP客户端
+serde_yaml = "0.9.25"
+tempfile = "3.8.0"
+
+[target.'cfg(unix)'.dependencies]
+nix = "0.27.1"  # Unix系统API
