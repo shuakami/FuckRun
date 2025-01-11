@@ -8,17 +8,17 @@ use std::collections::HashSet;
 use std::hash::{Hash, Hasher};
 use std::future::Future;
 use std::pin::Pin;
+use crate::types::{FsConfig, ProcessPriority};
 
 pub struct FsManager {
-    max_retries: u32,
-    retry_delay: Duration,
+    config: FsConfig,
 }
 
 #[derive(Debug, Clone)]
 struct ProcessInfo {
     pid: u32,
     name: String,
-    priority: u32,  // 优先级：1最高（系统进程），2中等（应用程序），3最低（临时进程）
+    priority: ProcessPriority,
 }
 
 impl PartialEq for ProcessInfo {
@@ -38,18 +38,14 @@ impl Hash for ProcessInfo {
 impl Default for FsManager {
     fn default() -> Self {
         Self {
-            max_retries: 3,
-            retry_delay: Duration::from_millis(100),
+            config: FsConfig::default(),
         }
     }
 }
 
 impl FsManager {
-    pub fn new(max_retries: u32, retry_delay: Duration) -> Self {
-        Self {
-            max_retries,
-            retry_delay,
-        }
+    pub fn new(config: FsConfig) -> Self {
+        Self { config }
     }
 
     /// 强制删除文件，处理各种特殊情况
@@ -64,7 +60,7 @@ impl FsManager {
         
         let mut last_error = None;
 
-        for i in 0..self.max_retries {
+        for i in 0..self.config.max_retries {
             match self.try_remove_file(path).await {
                 Ok(_) => {
                     info!("成功删除文件: {:?}", path);
@@ -73,7 +69,7 @@ impl FsManager {
                 Err(e) => {
                     warn!("第{}次删除失败: {}", i + 1, e);
                     last_error = Some(e);
-                    sleep(self.retry_delay).await;
+                    sleep(self.config.retry_delay()).await;
                 }
             }
         }
@@ -93,7 +89,7 @@ impl FsManager {
         
         let mut last_error = None;
 
-        for i in 0..self.max_retries {
+        for i in 0..self.config.max_retries {
             match self.try_remove_dir_all(path).await {
                 Ok(_) => {
                     info!("成功删除目录: {:?}", path);
@@ -102,7 +98,7 @@ impl FsManager {
                 Err(e) => {
                     warn!("第{}次删除失败: {}", i + 1, e);
                     last_error = Some(e);
-                    sleep(self.retry_delay).await;
+                    sleep(self.config.retry_delay()).await;
                 }
             }
         }
@@ -115,7 +111,7 @@ impl FsManager {
         let mut processes = self.find_locking_processes(path).await?;
         
         // 按优先级排序（优先级数字越大，实际优先级越低）
-        processes.sort_by_key(|p| p.priority);
+        processes.sort_by_key(|p| p.priority.value());
         
         for process in processes {
             info!("正在终止进程: {} (PID: {})", process.name, process.pid);
@@ -123,7 +119,7 @@ impl FsManager {
         }
 
         // 等待进程完全退出
-        sleep(Duration::from_millis(500)).await;
+        sleep(self.config.exit_wait()).await;
         Ok(())
     }
 
@@ -146,7 +142,7 @@ impl FsManager {
                     processes.insert(ProcessInfo {
                         pid,
                         name: "python.exe".to_string(),
-                        priority: 2,
+                        priority: ProcessPriority::Application,
                     });
                 }
             }
@@ -166,7 +162,7 @@ impl FsManager {
                         processes.insert(ProcessInfo {
                             pid,
                             name: git_proc.to_string(),
-                            priority: 2,
+                            priority: ProcessPriority::Application,
                         });
                     }
                 }
@@ -191,9 +187,9 @@ impl FsManager {
                                     let name = name.trim_matches('"').to_string();
                                     let priority = if name.eq_ignore_ascii_case("explorer.exe") 
                                         || name.eq_ignore_ascii_case("system") {
-                                        1
+                                        ProcessPriority::System
                                     } else {
-                                        2
+                                        ProcessPriority::Application
                                     };
                                     processes.insert(ProcessInfo {
                                         pid,
@@ -222,12 +218,13 @@ impl FsManager {
                     if fields.len() >= 2 {
                         if let Ok(pid) = fields[1].parse::<u32>() {
                             let name = fields[0].to_string();
-                            let priority = if name.contains("python") {
-                                2
-                            } else if name.contains("git") {
-                                2
+                            let priority = if name.contains("python") || name.contains("git") {
+                                ProcessPriority::Application
+                            } else if name.eq_ignore_ascii_case("explorer") 
+                                || name.eq_ignore_ascii_case("system") {
+                                ProcessPriority::System
                             } else {
-                                3
+                                ProcessPriority::Temporary
                             };
                             processes.insert(ProcessInfo {
                                 pid,
@@ -345,7 +342,7 @@ impl FsManager {
             // 在Unix上使用chmod
             use std::os::unix::fs::PermissionsExt;
             let mut perms = fs::metadata(path)?.permissions();
-            perms.set_mode(0o777);
+            perms.set_mode(self.config.default_file_mode);
             fs::set_permissions(path, perms)?;
             fs::remove_file(path).context("删除文件失败")?;
         }
@@ -379,7 +376,7 @@ impl FsManager {
             // 在Unix上使用chmod递归修改权限
             use std::process::Command;
             Command::new("chmod")
-                .args(["-R", "777", path.to_str().unwrap()])
+                .args(["-R", &format!("{:o}", self.config.default_dir_mode), path.to_str().unwrap()])
                 .output()
                 .context("修改权限失败")?;
             fs::remove_dir_all(path).context("删除目录失败")?;
@@ -392,6 +389,16 @@ impl FsManager {
         if let Ok(metadata) = fs::metadata(path) {
             let mut perms = metadata.permissions();
             perms.set_readonly(false);
+            #[cfg(unix)]
+            {
+                use std::os::unix::fs::PermissionsExt;
+                let mode = if metadata.is_dir() {
+                    self.config.default_dir_mode
+                } else {
+                    self.config.default_file_mode
+                };
+                perms.set_mode(mode);
+            }
             fs::set_permissions(path, perms)?;
         }
         Ok(())

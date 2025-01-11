@@ -1,27 +1,45 @@
 use std::path::PathBuf;
 use anyhow::{Result, Context};
-use log::{info, error};
+use log::{info, error, warn};
 use tokio::process::Command;
 use crate::state::ProcessState;
+use crate::workspace::Workspace;
 use tokio::io::{BufReader, AsyncBufReadExt};
 use std::process::Stdio;
-use tokio::time::{sleep, Duration};
+use tokio::time::sleep;
 use std::collections::HashMap;
 use std::fs;
-use std::os::windows::process::CommandExt;
+use crate::types::ProcessConfig;
 
-const CREATE_NEW_PROCESS_GROUP: u32 = 0x00000200;
-const DETACHED_PROCESS: u32 = 0x00000008;
-
-pub struct ProcessManager {
+pub struct ProcessManager<'a> {
     state: ProcessState,
+    config: ProcessConfig,
+    workspace: &'a Workspace,
+    process_name: String,
 }
 
-impl ProcessManager {
-    pub fn new() -> Self {
+impl<'a> ProcessManager<'a> {
+    pub fn new(workspace: &'a Workspace, process_name: String) -> Self {
         Self {
             state: ProcessState::default(),
+            config: ProcessConfig::default(),
+            workspace,
+            process_name,
         }
+    }
+
+    pub fn with_config(workspace: &'a Workspace, process_name: String, config: ProcessConfig) -> Self {
+        Self {
+            state: ProcessState::default(),
+            config,
+            workspace,
+            process_name,
+        }
+    }
+
+    /// 获取进程配置
+    pub fn get_config(&self) -> &ProcessConfig {
+        &self.config
     }
 
     pub async fn start(
@@ -41,6 +59,9 @@ impl ProcessManager {
         fs::create_dir_all(working_dir).context("创建工作目录失败")?;
         info!("工作目录已创建/确认");
         
+        // 确保进程目录结构存在
+        self.workspace.ensure_process_dirs(&self.process_name)?;
+        
         // 构建命令
         let mut cmd = Command::new(program);
         cmd.args(args)
@@ -51,7 +72,7 @@ impl ProcessManager {
 
         // Windows特定配置：创建新进程组并分离
         #[cfg(windows)]
-        cmd.creation_flags(CREATE_NEW_PROCESS_GROUP | DETACHED_PROCESS);
+        cmd.creation_flags(self.config.windows_process_flags);
 
         // 设置环境变量
         if let Some(vars) = env_vars {
@@ -73,8 +94,9 @@ impl ProcessManager {
         state.program = program.to_string();
         state.args = args.to_vec();
         state.working_dir = working_dir.clone();
+        state.port = self.config.default_port;
         state.health_check_url = health_check_url.map(String::from);
-        state.save()?;
+        state.save(self.workspace, &self.process_name)?;
         info!("进程状态已保存");
 
         // 创建一个channel用于进程状态通知
@@ -84,9 +106,22 @@ impl ProcessManager {
         if let Some(stdout) = child.stdout.take() {
             let tx = tx.clone();
             let mut reader = BufReader::new(stdout).lines();
+            let log_dir = self.workspace.get_process_log_dir(&self.process_name);
+            let stdout_log = log_dir.join("stdout.log");
+            
             tokio::spawn(async move {
+                use std::fs::OpenOptions;
+                use std::io::Write;
+                
+                let mut file = OpenOptions::new()
+                    .create(true)
+                    .append(true)
+                    .open(stdout_log)
+                    .unwrap_or_else(|_| panic!("无法打开标准输出日志文件"));
+                
                 while let Ok(Some(line)) = reader.next_line().await {
-                    info!("进程输出: {}", line);
+                    info!("[stdout] {}", line);
+                    writeln!(file, "{}", line).unwrap_or_else(|_| error!("写入标准输出日志失败"));
                 }
                 let _ = tx.send(false).await;
             });
@@ -96,9 +131,22 @@ impl ProcessManager {
         if let Some(stderr) = child.stderr.take() {
             let tx = tx.clone();
             let mut reader = BufReader::new(stderr).lines();
+            let log_dir = self.workspace.get_process_log_dir(&self.process_name);
+            let stderr_log = log_dir.join("stderr.log");
+            
             tokio::spawn(async move {
+                use std::fs::OpenOptions;
+                use std::io::Write;
+                
+                let mut file = OpenOptions::new()
+                    .create(true)
+                    .append(true)
+                    .open(stderr_log)
+                    .unwrap_or_else(|_| panic!("无法打开标准错误日志文件"));
+                
                 while let Ok(Some(line)) = reader.next_line().await {
-                    error!("进程错误: {}", line);
+                    info!("[stderr] {}", line);
+                    writeln!(file, "{}", line).unwrap_or_else(|_| error!("写入标准错误日志失败"));
                 }
                 let _ = tx.send(false).await;
             });
@@ -123,9 +171,9 @@ impl ProcessManager {
         });
 
         // 等待进程初始化
-        info!("等待进程初始化(5秒)...");
+        info!("等待进程初始化({:?})...", self.config.init_wait());
         tokio::select! {
-            _ = sleep(Duration::from_secs(5)) => {
+            _ = sleep(self.config.init_wait()) => {
                 info!("初始化等待完成");
             }
             Some(false) = rx.recv() => {
@@ -139,10 +187,10 @@ impl ProcessManager {
             info!("开始健康检查: {}", url);
             let client = reqwest::Client::builder()
                 .user_agent("Mozilla/5.0")
-                .timeout(Duration::from_secs(5))
+                .timeout(self.config.health_check_timeout())
                 .build()?;
             
-            for i in 0..10 {
+            for i in 0..self.config.health_check_retries {
                 info!("第{}次健康检查...", i + 1);
                 
                 tokio::select! {
@@ -166,9 +214,9 @@ impl ProcessManager {
                     }
                 }
 
-                info!("等待2秒后重试...");
+                info!("等待{:?}后重试...", self.config.retry_interval());
                 tokio::select! {
-                    _ = sleep(Duration::from_secs(2)) => {}
+                    _ = sleep(self.config.retry_interval()) => {}
                     Some(false) = rx.recv() => {
                         error!("进程在等待过程中退出");
                         return Err(anyhow::anyhow!("进程在等待过程中退出"));
@@ -185,84 +233,189 @@ impl ProcessManager {
         Ok(())
     }
 
+    /// 清理指定端口的所有进程
+    async fn cleanup_port(&self, port: u16) -> Result<()> {
+        info!("开始清理端口 {} 的所有进程", port);
+        
+        #[cfg(windows)]
+        {
+            // 使用 netstat 查找占用端口的进程
+            let output = Command::new("netstat")
+                .args(["-ano", "-p", "TCP"])
+                .output()
+                .await
+                .context("执行 netstat 命令失败")?;
+            
+            let output_str = String::from_utf8_lossy(&output.stdout);
+            for line in output_str.lines() {
+                if line.contains(&format!(":{}", port)) {
+                    if let Some(pid_str) = line.split_whitespace().last() {
+                        if let Ok(pid) = pid_str.parse::<i32>() {
+                            info!("发现占用端口 {} 的进程: {}", port, pid);
+                            if let Err(e) = self.force_shutdown(pid).await {
+                                warn!("终止进程 {} 失败: {}", pid, e);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #[cfg(unix)]
+        {
+            // 使用 lsof 查找占用端口的进程
+            let output = Command::new("lsof")
+                .args(["-i", &format!(":{}", port), "-t"])
+                .output()
+                .await
+                .context("执行 lsof 命令失败")?;
+            
+            let output_str = String::from_utf8_lossy(&output.stdout);
+            for pid_str in output_str.lines() {
+                if let Ok(pid) = pid_str.parse::<i32>() {
+                    info!("发现占用端口 {} 的进程: {}", port, pid);
+                    if let Err(e) = self.force_shutdown(pid).await {
+                        warn!("终止进程 {} 失败: {}", pid, e);
+                    }
+                }
+            }
+        }
+
+        info!("端口 {} 清理完成", port);
+        Ok(())
+    }
+
     pub async fn stop(&self) -> Result<()> {
-        info!("停止进程");
+        info!("开始停止进程");
         
         // 加载进程状态
-        let state = ProcessState::load().context("加载进程状态失败")?;
+        let state = ProcessState::load(self.workspace, &self.process_name)
+            .context("加载进程状态失败")?;
+        
+        // 记录当前端口
+        let port = state.port;
+        info!("当前进程使用端口: {}", port);
+
         let pid = match state.pid {
             Some(pid) => pid,
             None => {
-                info!("没有运行中的进程");
+                info!("没有找到运行中的进程 PID");
+                // 即使没有主进程 PID，也尝试清理端口
+                self.cleanup_port(port).await?;
                 return Ok(());
             }
         };
 
-        info!("正在停止PID为{}的进程", pid);
+        info!("正在停止 PID 为 {} 的主进程", pid);
 
         // 尝试优雅终止进程
         if !self.try_graceful_shutdown(pid).await {
-            // 如果优雅终止失败,则强制终止
+            info!("优雅终止失败，将强制终止进程");
+            // 如果优雅终止失败，则强制终止
             self.force_shutdown(pid).await?;
         }
 
-        // 清除进程状态
-        state.clear().context("清除进程状态失败")?;
-        info!("进程状态已清除");
+        // 清理可能残留的占用相同端口的进程
+        self.cleanup_port(port).await?;
+
+        // 更新进程状态为已停止
+        let mut state = state.clone();
+        state.update_stopped_state();
+        state.save(self.workspace, &self.process_name)
+            .context("更新进程状态失败")?;
         
+        info!("进程状态已更新为停止");
+        info!("进程停止操作完成");
         Ok(())
     }
 
     async fn try_graceful_shutdown(&self, pid: i32) -> bool {
+        info!("尝试优雅终止进程 {}", pid);
+        
         #[cfg(windows)]
         {
             use std::process::Command;
+            info!("Windows 平台：使用 taskkill 发送 CTRL_C_EVENT");
             // Windows下使用CTRL_C_EVENT信号
             match Command::new("taskkill")
                 .args(["/PID", &pid.to_string()])
                 .output()
             {
-                Ok(output) => output.status.success(),
-                Err(_) => false
+                Ok(output) => {
+                    if output.status.success() {
+                        info!("已发送终止信号到进程 {}", pid);
+                        // 等待进程响应信号
+                        tokio::time::sleep(self.config.graceful_shutdown_timeout()).await;
+                        info!("优雅终止等待完成");
+                        true
+                    } else {
+                        let error = String::from_utf8_lossy(&output.stderr);
+                        warn!("发送终止信号失败: {}", error);
+                        false
+                    }
+                }
+                Err(e) => {
+                    warn!("执行 taskkill 命令失败: {}", e);
+                    false
+                }
             }
         }
 
         #[cfg(unix)]
         {
-            use nix::sys::signal::{kill, Signal};
-            use nix::unistd::Pid;
-            // Unix下发送SIGTERM信号
-            match kill(Pid::from_raw(pid), Signal::SIGTERM) {
-                Ok(_) => {
-                    // 等待进程响应SIGTERM信号
-                    tokio::time::sleep(Duration::from_secs(3)).await;
-                    // 检查进程是否还在运行
-                    kill(Pid::from_raw(pid), Signal::SIGZERO).is_err()
+            info!("Unix 平台：发送 SIGTERM 信号");
+            // Unix下使用SIGTERM信号
+            match nix::sys::signal::kill(
+                nix::unistd::Pid::from_raw(pid),
+                nix::sys::signal::Signal::SIGTERM,
+            ) {
+                Ok(()) => {
+                    info!("已发送 SIGTERM 信号到进程 {}", pid);
+                    // 等待进程响应信号
+                    tokio::time::sleep(self.config.graceful_shutdown_timeout()).await;
+                    info!("优雅终止等待完成");
+                    true
                 }
-                Err(_) => false
+                Err(e) => {
+                    warn!("发送 SIGTERM 信号失败: {}", e);
+                    false
+                }
             }
         }
     }
 
     async fn force_shutdown(&self, pid: i32) -> Result<()> {
+        info!("开始强制终止进程 {}", pid);
+        
         #[cfg(windows)]
         {
-            use std::process::Command;
-            Command::new("taskkill")
+            info!("Windows 平台：使用 taskkill /F 强制终止");
+            let output = Command::new("taskkill")
                 .args(["/F", "/PID", &pid.to_string()])
                 .output()
-                .context("强制终止进程失败")?;
+                .await
+                .context("执行 taskkill 命令失败")?;
+
+            if !output.status.success() {
+                let error = String::from_utf8_lossy(&output.stderr);
+                warn!("强制终止失败: {}", error);
+                return Err(anyhow::anyhow!("强制终止进程失败: {}", error));
+            }
         }
 
         #[cfg(unix)]
         {
-            use nix::sys::signal::{kill, Signal};
-            use nix::unistd::Pid;
-            kill(Pid::from_raw(pid), Signal::SIGKILL)
-                .context("强制终止进程失败")?;
+            info!("Unix 平台：发送 SIGKILL 信号");
+            nix::sys::signal::kill(
+                nix::unistd::Pid::from_raw(pid),
+                nix::sys::signal::Signal::SIGKILL,
+            ).context("发送 SIGKILL 信号失败")?;
         }
 
-        info!("进程已强制终止");
+        // 等待一段时间确保进程完全退出
+        tokio::time::sleep(self.config.exit_wait()).await;
+        info!("进程 {} 已强制终止", pid);
+        
         Ok(())
     }
 
@@ -270,7 +423,7 @@ impl ProcessManager {
         info!("检查进程状态");
         
         // 加载进程状态
-        match ProcessState::load() {
+        match ProcessState::load(self.workspace, &self.process_name) {
             Ok(state) => {
                 if let Some(pid) = state.pid {
                     info!("检查PID为{}的进程", pid);
@@ -354,5 +507,18 @@ impl ProcessManager {
         }
         
         Ok(false)
+    }
+
+    pub async fn update_stopped_state(&self) -> Result<()> {
+        // 读取当前状态
+        let mut state = ProcessState::load(self.workspace, &self.process_name)?;
+        
+        // 更新状态
+        state.pid = None;
+        
+        // 保存状态
+        state.save(self.workspace, &self.process_name)?;
+        
+        Ok(())
     }
 } 

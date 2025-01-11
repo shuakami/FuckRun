@@ -3,6 +3,7 @@ use std::path::{Path, PathBuf};
 use anyhow::{Result, Context};
 use std::fs;
 use std::collections::HashMap;
+use crate::types::{ProcessConfig as TypesProcessConfig, FsConfig, StateConfig};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProcessConfig {
@@ -36,6 +37,9 @@ pub struct ProcessConfig {
     /// 日志配置
     #[serde(default)]
     pub log: LogConfig,
+    /// 进程管理配置
+    #[serde(default)]
+    pub process: TypesProcessConfig,
 }
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
@@ -72,6 +76,15 @@ pub struct GlobalConfig {
     /// 全局日志配置
     #[serde(default)]
     pub log: LogConfig,
+    /// 文件系统配置
+    #[serde(default)]
+    pub fs: FsConfig,
+    /// 状态管理配置
+    #[serde(default)]
+    pub state: StateConfig,
+    /// 进程管理配置
+    #[serde(default)]
+    pub process: TypesProcessConfig,
 }
 
 impl Config {
@@ -177,6 +190,9 @@ mod tests {
                     max_size: 200,
                     max_files: 10,
                 },
+                fs: FsConfig::default(),
+                state: StateConfig::default(),
+                process: TypesProcessConfig::default(),
             },
             processes: {
                 let mut map = HashMap::new();
@@ -197,6 +213,7 @@ mod tests {
                         max_size: 100,
                         max_files: 5,
                     },
+                    process: TypesProcessConfig::default(),
                 });
                 map
             },

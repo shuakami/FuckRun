@@ -7,12 +7,26 @@ global:
     level: debug
     max_size: 200
     max_files: 10
+  fs:
+    max_retries: 3
+    retry_delay_ms: 100
+    default_mode: 0o777
+  state:
+    state_dir: .fuckrun
+    state_filename: state.json
+  process:
+    default_port: 5000
+    init_wait_secs: 5
+    health_check_timeout_secs: 5
+    health_check_retries: 10
+    retry_interval_secs: 2
+    graceful_shutdown_timeout_secs: 3
 
 processes:
   web:
     name: web
     program: python
-    args: ["examples/simple_web.py"]
+    args: ["app/web/app.py"]
     working_dir: .
     auto_restart: true
     start_delay: 5
@@ -22,4 +36,11 @@ processes:
       file: logs/web.log
       level: info
       max_size: 100
-      max_files: 5 
+      max_files: 5
+    process:
+      default_port: 5000
+      init_wait_secs: 5
+      health_check_timeout_secs: 5
+      health_check_retries: 10
+      retry_interval_secs: 2
+      graceful_shutdown_timeout_secs: 3 
