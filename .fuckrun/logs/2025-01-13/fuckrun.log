@@ -1,0 +1,1234 @@
+2025-01-13T00:01:24.445395+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:01:24.445747800+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:01:24.446087100+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:01:24.447007300+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:01:24.447346500+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:01:24.447644100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:01:24.447819+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:318 - 检查进程状态
+2025-01-13T00:01:24.448219400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:323 - 检查PID为36980的进程
+2025-01-13T00:01:24.617733100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:334 - 进程正在运行
+2025-01-13T00:01:24.617936900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:336 - 检查健康状态: http://localhost:5000/health
+2025-01-13T00:01:24.623105200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:341 - 进程健康检查通过
+2025-01-13T00:01:24.623890800+08:00 [ERROR] [fuckrun::process::manager] src\process\manager.rs:93 - 进程已在运行
+2025-01-13T00:01:35.901086+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:01:35.901431900+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:01:35.901885700+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:01:35.903016900+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:01:35.903470100+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:01:35.903810600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:01:35.904391+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:01:35.904860600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 正在停止 PID 为 36980 的用户进程
+2025-01-13T00:01:35.905140800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:408 - 尝试优雅终止进程 36980
+2025-01-13T00:01:35.905400800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:412 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:01:36.034880600+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:426 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 36980 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:01:36.035376400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 优雅终止失败，将强制终止进程
+2025-01-13T00:01:36.035620800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 36980
+2025-01-13T00:01:36.035869200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:01:36.696502300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:487 - 进程 36980 已强制终止
+2025-01-13T00:01:36.697116200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:302 - 没有找到运行中的监控进程
+2025-01-13T00:01:36.697587800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:493 - 开始清理端口 5000 的所有进程
+2025-01-13T00:01:36.733156800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:508 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:01:36.733522100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 0
+2025-01-13T00:01:36.734192100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:01:36.864618800+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:01:36.865151100+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:510 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:01:36.866157700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:537 - 端口 5000 清理完成
+2025-01-13T00:01:36.866932300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:312 - 进程状态已更新为停止
+2025-01-13T00:01:36.867181900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:313 - 进程停止操作完成
+2025-01-13T00:01:39.993484+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:01:39.993799100+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:01:39.994628500+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:01:39.995530800+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:01:39.995856800+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:01:39.996055600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:01:39.996220+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:318 - 检查进程状态
+2025-01-13T00:01:39.996532800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:389 - 没有找到进程PID
+2025-01-13T00:01:39.996687900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:97 - 程序: python
+2025-01-13T00:01:39.996839800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:98 - 参数: ["app/web/app.py"]
+2025-01-13T00:01:39.997023800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:99 - 工作目录: "."
+2025-01-13T00:01:39.997188900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:51 - 以守护进程方式启动...
+2025-01-13T00:01:39.997342800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:55 - Monitor进程ID: 21820
+2025-01-13T00:01:39.997908700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:83 - 监控程序路径: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:01:39.998254800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:89 - 进程目录(绝对路径): "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web"
+2025-01-13T00:01:39.998471+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:93 - 配置文件路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:01:39.998724400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:122 - 环境变量:
+2025-01-13T00:01:39.998926500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:124 -   RUST_LOG=info
+2025-01-13T00:01:39.999101600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:134 - 启动参数:
+2025-01-13T00:01:39.999276200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:135 -   程序: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:01:39.999426700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:136 -   工作目录: "."
+2025-01-13T00:01:39.999581900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:137 -   参数列表:
+2025-01-13T00:01:39.999758700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     monitor
+2025-01-13T00:01:39.999912300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --process-name
+2025-01-13T00:01:40.000061300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     web
+2025-01-13T00:01:40.000222300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --program
+2025-01-13T00:01:40.000373700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     python
+2025-01-13T00:01:40.000524100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --config
+2025-01-13T00:01:40.000684300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     \\?\F:\Luoxiaohei\FuckRun\app\web\config.yaml
+2025-01-13T00:01:40.000841100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --arg
+2025-01-13T00:01:40.001013800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     \\?\F:\Luoxiaohei\FuckRun\app\web\app.py
+2025-01-13T00:01:40.001176100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --working-dir
+2025-01-13T00:01:40.001344+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     .
+2025-01-13T00:01:40.001528600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --env
+2025-01-13T00:01:40.001701800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     RUST_LOG=info
+2025-01-13T00:01:40.002423+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --auto-restart
+2025-01-13T00:01:40.002782900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:151 - 正在启动监控进程...
+2025-01-13T00:01:40.007890100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:154 - Windows监控进程已启动, PID: 34152
+2025-01-13T00:01:40.008144300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:157 - 等待进程初始化(5秒)...
+2025-01-13T00:01:40.020451400+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:01:40.020500900+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:01:40.020549100+08:00 [INFO] [fuckrun] src\main.rs:109 - 处理Monitor命令
+2025-01-13T00:01:40.020559400+08:00 [INFO] [fuckrun] src\main.rs:110 - 进程名称: web
+2025-01-13T00:01:40.020603+08:00 [INFO] [fuckrun] src\main.rs:111 - 程序: python
+2025-01-13T00:01:40.020620900+08:00 [INFO] [fuckrun] src\main.rs:112 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:01:40.020631900+08:00 [INFO] [fuckrun] src\main.rs:113 - 工作目录: "."
+2025-01-13T00:01:40.020641100+08:00 [INFO] [fuckrun] src\main.rs:114 - 环境变量: ["RUST_LOG=info"]
+2025-01-13T00:01:40.020650100+08:00 [INFO] [fuckrun] src\main.rs:115 - 自动重启: true
+2025-01-13T00:01:40.020659600+08:00 [INFO] [fuckrun] src\main.rs:116 - 配置文件: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:01:40.020849900+08:00 [INFO] [fuckrun] src\main.rs:121 - 配置文件绝对路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:01:40.020881700+08:00 [INFO] [fuckrun] src\main.rs:124 - 正在加载配置文件...
+2025-01-13T00:01:40.021450+08:00 [INFO] [fuckrun] src\main.rs:126 - 配置文件加载成功
+2025-01-13T00:01:40.021518600+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:27 - 启动进程监控
+2025-01-13T00:01:40.021547900+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:28 - 进程名称: web
+2025-01-13T00:01:40.021568900+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:29 - 程序: python
+2025-01-13T00:01:40.021591200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:30 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:01:40.021612400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:31 - 工作目录: "."
+2025-01-13T00:01:40.026877500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:65 - 进程已启动, PID: 32152
+2025-01-13T00:01:40.026915+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:68 - 等待进程初始化(5秒)...
+2025-01-13T00:01:45.036756400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:84 - 进程状态已保存
+2025-01-13T00:01:45.037019200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:94 - 开始监控进程...
+2025-01-13T00:01:45.037107+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:293 - 保存初始进程状态, PID: 32152
+2025-01-13T00:01:45.039255200+08:00 [INFO] [fuckrun::logger] src\logger.rs:130 - 为进程 web 创建日志目录: ".\\.fuckrun\\processes\\web\\logs\\2025-01-13"
+2025-01-13T00:01:45.039572500+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:01:45.039803700+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:01:45.040330500+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:01:45.040534200+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:01:45.040679800+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:01:45.041014200+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:01:45.041149200+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:01:45.187365400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:169 - 监控进程正在运行
+2025-01-13T00:01:45.187547500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:173 - 开始健康检查: http://localhost:5000/health
+2025-01-13T00:01:45.188621+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:180 - 第1次健康检查...
+2025-01-13T00:01:45.196512900+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] 127.0.0.1 - - [13/Jan/2025 00:01:45] "GET /health HTTP/1.1" 200 -
+2025-01-13T00:01:45.197289600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:183 - 收到响应: 200 OK
+2025-01-13T00:01:45.197728300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:185 - 健康检查通过，进程已在后台运行
+2025-01-13T00:01:45.198257900+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:49 - 进程启动成功
+2025-01-13T00:02:49.128085500+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:02:49.128356200+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:02:49.128664900+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:02:49.129430100+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:02:49.129778300+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:02:49.129971800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:02:49.130239700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:02:49.130425300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 正在停止 PID 为 32152 的用户进程
+2025-01-13T00:02:49.130633100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:408 - 尝试优雅终止进程 32152
+2025-01-13T00:02:49.131608600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:412 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:02:49.277047600+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:426 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 32152 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:02:49.277278400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 优雅终止失败，将强制终止进程
+2025-01-13T00:02:49.277464+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 32152
+2025-01-13T00:02:49.277636400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:02:49.925695+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:487 - 进程 32152 已强制终止
+2025-01-13T00:02:49.926001300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:302 - 没有找到运行中的监控进程
+2025-01-13T00:02:49.926290800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:493 - 开始清理端口 5000 的所有进程
+2025-01-13T00:02:49.952293400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:508 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:02:49.952529200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 0
+2025-01-13T00:02:49.952838+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:02:50.092049800+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:02:50.092414200+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:510 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:02:50.092699100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:508 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:02:50.092911300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 0
+2025-01-13T00:02:50.093087500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:02:50.245456200+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:02:50.245833700+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:510 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:02:50.246916600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:537 - 端口 5000 清理完成
+2025-01-13T00:02:50.247664300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:312 - 进程状态已更新为停止
+2025-01-13T00:02:50.247992400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:313 - 进程停止操作完成
+2025-01-13T00:03:38.250276200+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:03:38.250608400+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:03:38.250994900+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:03:38.252010800+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:03:38.252317800+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:03:38.252528200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:03:38.252711300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:318 - 检查进程状态
+2025-01-13T00:03:38.253057700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:389 - 没有找到进程PID
+2025-01-13T00:03:38.253251400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:97 - 程序: python
+2025-01-13T00:03:38.253428200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:98 - 参数: ["app/web/app.py"]
+2025-01-13T00:03:38.253580800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:99 - 工作目录: "."
+2025-01-13T00:03:38.253770100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:51 - 以守护进程方式启动...
+2025-01-13T00:03:38.253929600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:55 - Monitor进程ID: 42640
+2025-01-13T00:03:38.254517800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:83 - 监控程序路径: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:03:38.254755300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:89 - 进程目录(绝对路径): "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web"
+2025-01-13T00:03:38.254946600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:93 - 配置文件路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:03:38.255191+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:122 - 环境变量:
+2025-01-13T00:03:38.255388900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:124 -   RUST_LOG=info
+2025-01-13T00:03:38.255552500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:134 - 启动参数:
+2025-01-13T00:03:38.255723200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:135 -   程序: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:03:38.255906700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:136 -   工作目录: "."
+2025-01-13T00:03:38.256098400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:137 -   参数列表:
+2025-01-13T00:03:38.256257500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     monitor
+2025-01-13T00:03:38.256419100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --process-name
+2025-01-13T00:03:38.256579400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     web
+2025-01-13T00:03:38.256731700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --program
+2025-01-13T00:03:38.256879+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     python
+2025-01-13T00:03:38.257031200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --config
+2025-01-13T00:03:38.257195100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     \\?\F:\Luoxiaohei\FuckRun\app\web\config.yaml
+2025-01-13T00:03:38.257352800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --arg
+2025-01-13T00:03:38.257510500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     \\?\F:\Luoxiaohei\FuckRun\app\web\app.py
+2025-01-13T00:03:38.257651600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --working-dir
+2025-01-13T00:03:38.257795700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     .
+2025-01-13T00:03:38.257966+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --env
+2025-01-13T00:03:38.258146+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     RUST_LOG=info
+2025-01-13T00:03:38.258892200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --auto-restart
+2025-01-13T00:03:38.259270700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:151 - 正在启动监控进程...
+2025-01-13T00:03:38.263960700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:154 - Windows监控进程已启动, PID: 25960
+2025-01-13T00:03:38.264468100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:157 - 等待进程初始化(5秒)...
+2025-01-13T00:03:38.278331900+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:03:38.278360100+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:03:38.278385700+08:00 [INFO] [fuckrun] src\main.rs:109 - 处理Monitor命令
+2025-01-13T00:03:38.278392500+08:00 [INFO] [fuckrun] src\main.rs:110 - 进程名称: web
+2025-01-13T00:03:38.278398100+08:00 [INFO] [fuckrun] src\main.rs:111 - 程序: python
+2025-01-13T00:03:38.278408600+08:00 [INFO] [fuckrun] src\main.rs:112 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:03:38.278415800+08:00 [INFO] [fuckrun] src\main.rs:113 - 工作目录: "."
+2025-01-13T00:03:38.278421800+08:00 [INFO] [fuckrun] src\main.rs:114 - 环境变量: ["RUST_LOG=info"]
+2025-01-13T00:03:38.278427400+08:00 [INFO] [fuckrun] src\main.rs:115 - 自动重启: true
+2025-01-13T00:03:38.278434400+08:00 [INFO] [fuckrun] src\main.rs:116 - 配置文件: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:03:38.278515300+08:00 [INFO] [fuckrun] src\main.rs:121 - 配置文件绝对路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:03:38.278551700+08:00 [INFO] [fuckrun] src\main.rs:124 - 正在加载配置文件...
+2025-01-13T00:03:38.278866700+08:00 [INFO] [fuckrun] src\main.rs:126 - 配置文件加载成功
+2025-01-13T00:03:38.278880900+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:27 - 启动进程监控
+2025-01-13T00:03:38.278887200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:28 - 进程名称: web
+2025-01-13T00:03:38.278892700+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:29 - 程序: python
+2025-01-13T00:03:38.278899500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:30 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:03:38.278906200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:31 - 工作目录: "."
+2025-01-13T00:03:38.283788100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:65 - 进程已启动, PID: 43448
+2025-01-13T00:03:38.283828800+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:68 - 等待进程初始化(5秒)...
+2025-01-13T00:03:43.294800100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:84 - 进程状态已保存
+2025-01-13T00:03:43.295139400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:94 - 开始监控进程...
+2025-01-13T00:03:43.295247900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:297 - 保存初始进程状态, PID: 43448
+2025-01-13T00:03:43.297063100+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:03:43.297692500+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:03:43.297861200+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:03:43.298677100+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:03:43.299000800+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:03:43.299628600+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:03:43.300746400+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:03:43.463409300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:169 - 监控进程正在运行
+2025-01-13T00:03:43.463763300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:173 - 开始健康检查: http://localhost:5000/health
+2025-01-13T00:03:43.466923800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:180 - 第1次健康检查...
+2025-01-13T00:03:43.473298600+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] 127.0.0.1 - - [13/Jan/2025 00:03:43] "GET /health HTTP/1.1" 200 -
+2025-01-13T00:03:43.475410200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:183 - 收到响应: 200 OK
+2025-01-13T00:03:43.476044400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:185 - 健康检查通过，进程已在后台运行
+2025-01-13T00:03:43.476622700+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:49 - 进程启动成功
+2025-01-13T00:04:26.739710500+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:04:26.739916+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:04:26.740175+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:04:26.740701500+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:04:26.740924300+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:04:26.741123300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:04:26.741350+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:04:26.741553900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 正在停止 PID 为 43448 的用户进程
+2025-01-13T00:04:26.741729500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:408 - 尝试优雅终止进程 43448
+2025-01-13T00:04:26.741891700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:412 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:04:26.880530400+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:426 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 43448 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:04:26.880731600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 优雅终止失败，将强制终止进程
+2025-01-13T00:04:26.880925300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 43448
+2025-01-13T00:04:26.881127600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:04:27.008478600+08:00 [WARN] [fuckrun::process::daemon] src\process\daemon.rs:320 - 进程异常退出(exit code: 1), 准备重启...
+2025-01-13T00:04:27.523622600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:487 - 进程 43448 已强制终止
+2025-01-13T00:04:27.524153900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:302 - 没有找到运行中的监控进程
+2025-01-13T00:04:27.524884300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:493 - 开始清理端口 5000 的所有进程
+2025-01-13T00:04:27.567708600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:508 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:04:27.567917600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 0
+2025-01-13T00:04:27.568101500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:04:27.709898700+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:04:27.710258600+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:510 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:04:27.710996300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:537 - 端口 5000 清理完成
+2025-01-13T00:04:27.711538900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:312 - 进程状态已更新为停止
+2025-01-13T00:04:27.711755700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:313 - 进程停止操作完成
+2025-01-13T00:04:30.018556900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:337 - 重启程序路径: C:\Users\Administrator\AppData\Local\Programs\Python\Python312\python.exe
+2025-01-13T00:04:30.018596400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:338 - 重启参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:04:30.018638700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:339 - 工作目录: "."
+2025-01-13T00:04:30.023071600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:352 - 进程已重启, 新PID: 22692
+2025-01-13T00:04:30.577424800+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:04:30.577722400+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:04:30.588362400+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:04:30.588539100+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:04:30.588681600+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:04:30.588801900+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:04:30.589073500+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:04:45.398958400+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:04:45.399204600+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:04:45.399456800+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:04:45.400207600+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:04:45.400476300+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:04:45.400681900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:04:45.400997300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:04:45.401216300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 正在停止 PID 为 22692 的用户进程
+2025-01-13T00:04:45.401403200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:408 - 尝试优雅终止进程 22692
+2025-01-13T00:04:45.401570500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:412 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:04:45.541709400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:420 - 已发送终止信号到进程 22692
+2025-01-13T00:04:48.548204700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:422 - 优雅终止等待完成
+2025-01-13T00:04:48.548579500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:302 - 没有找到运行中的监控进程
+2025-01-13T00:04:48.549614800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:493 - 开始清理端口 5000 的所有进程
+2025-01-13T00:04:48.612706600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:508 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:04:48.613269400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 0
+2025-01-13T00:04:48.613564900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:04:48.737279900+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:04:48.737747100+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:510 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:04:48.739056+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:537 - 端口 5000 清理完成
+2025-01-13T00:04:48.740244+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:312 - 进程状态已更新为停止
+2025-01-13T00:04:48.740527600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:313 - 进程停止操作完成
+2025-01-13T00:05:07.155243300+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:05:07.155578900+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:05:07.156085500+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:05:07.156768100+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:05:07.157013400+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:05:07.157192+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:05:07.157362400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:318 - 检查进程状态
+2025-01-13T00:05:07.157936400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:389 - 没有找到进程PID
+2025-01-13T00:05:07.158181+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:97 - 程序: python
+2025-01-13T00:05:07.158420700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:98 - 参数: ["app/web/app.py"]
+2025-01-13T00:05:07.158666+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:99 - 工作目录: "."
+2025-01-13T00:05:07.158901400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:51 - 以守护进程方式启动...
+2025-01-13T00:05:07.159145200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:55 - Monitor进程ID: 2656
+2025-01-13T00:05:07.159905500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:83 - 监控程序路径: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:05:07.160271900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:89 - 进程目录(绝对路径): "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web"
+2025-01-13T00:05:07.160517500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:93 - 配置文件路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:05:07.160734400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:122 - 环境变量:
+2025-01-13T00:05:07.160942+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:124 -   RUST_LOG=info
+2025-01-13T00:05:07.161122+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:134 - 启动参数:
+2025-01-13T00:05:07.161301+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:135 -   程序: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:05:07.161493500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:136 -   工作目录: "."
+2025-01-13T00:05:07.161650200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:137 -   参数列表:
+2025-01-13T00:05:07.161811800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     monitor
+2025-01-13T00:05:07.161958+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --process-name
+2025-01-13T00:05:07.162100800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     web
+2025-01-13T00:05:07.162251200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --program
+2025-01-13T00:05:07.162395500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     python
+2025-01-13T00:05:07.162533400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --config
+2025-01-13T00:05:07.162673500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     \\?\F:\Luoxiaohei\FuckRun\app\web\config.yaml
+2025-01-13T00:05:07.162814+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --arg
+2025-01-13T00:05:07.162969800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     \\?\F:\Luoxiaohei\FuckRun\app\web\app.py
+2025-01-13T00:05:07.163108+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --working-dir
+2025-01-13T00:05:07.163261400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     .
+2025-01-13T00:05:07.163400300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --env
+2025-01-13T00:05:07.163540300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     RUST_LOG=info
+2025-01-13T00:05:07.163684700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -     --auto-restart
+2025-01-13T00:05:07.163843500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:151 - 正在启动监控进程...
+2025-01-13T00:05:07.166781500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:154 - Windows监控进程已启动, PID: 37452
+2025-01-13T00:05:07.166975700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:157 - 等待进程初始化(5秒)...
+2025-01-13T00:05:07.180027100+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:05:07.180078600+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:05:07.180114200+08:00 [INFO] [fuckrun] src\main.rs:109 - 处理Monitor命令
+2025-01-13T00:05:07.180121800+08:00 [INFO] [fuckrun] src\main.rs:110 - 进程名称: web
+2025-01-13T00:05:07.180127500+08:00 [INFO] [fuckrun] src\main.rs:111 - 程序: python
+2025-01-13T00:05:07.180138700+08:00 [INFO] [fuckrun] src\main.rs:112 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:05:07.180146500+08:00 [INFO] [fuckrun] src\main.rs:113 - 工作目录: "."
+2025-01-13T00:05:07.180152400+08:00 [INFO] [fuckrun] src\main.rs:114 - 环境变量: ["RUST_LOG=info"]
+2025-01-13T00:05:07.180158300+08:00 [INFO] [fuckrun] src\main.rs:115 - 自动重启: true
+2025-01-13T00:05:07.180165400+08:00 [INFO] [fuckrun] src\main.rs:116 - 配置文件: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:05:07.180313800+08:00 [INFO] [fuckrun] src\main.rs:121 - 配置文件绝对路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:05:07.180325300+08:00 [INFO] [fuckrun] src\main.rs:124 - 正在加载配置文件...
+2025-01-13T00:05:07.180653500+08:00 [INFO] [fuckrun] src\main.rs:126 - 配置文件加载成功
+2025-01-13T00:05:07.180672100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:27 - 启动进程监控
+2025-01-13T00:05:07.180680700+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:28 - 进程名称: web
+2025-01-13T00:05:07.180688500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:29 - 程序: python
+2025-01-13T00:05:07.180736+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:30 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:05:07.180748+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:31 - 工作目录: "."
+2025-01-13T00:05:07.188491500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:65 - 进程已启动, PID: 21948
+2025-01-13T00:05:07.188549800+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:68 - 等待进程初始化(5秒)...
+2025-01-13T00:05:12.197968300+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:84 - 进程状态已保存
+2025-01-13T00:05:12.198159700+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:94 - 开始监控进程...
+2025-01-13T00:05:12.198268700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:300 - 保存初始进程状态, PID: 21948
+2025-01-13T00:05:12.200357600+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:05:12.200513700+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:05:12.201198600+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:05:12.201259+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:05:12.201468200+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:05:12.201637500+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:05:12.201779100+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:05:12.342748600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:169 - 监控进程正在运行
+2025-01-13T00:05:12.342978100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:173 - 开始健康检查: http://localhost:5000/health
+2025-01-13T00:05:12.343902500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:180 - 第1次健康检查...
+2025-01-13T00:05:12.349011400+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] 127.0.0.1 - - [13/Jan/2025 00:05:12] "GET /health HTTP/1.1" 200 -
+2025-01-13T00:05:12.350069500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:183 - 收到响应: 200 OK
+2025-01-13T00:05:12.350438400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:185 - 健康检查通过，进程已在后台运行
+2025-01-13T00:05:12.350923400+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:49 - 进程启动成功
+2025-01-13T00:06:04.083334700+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:06:04.083733+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:06:04.084346400+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:06:04.087200700+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:06:04.087670+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:06:04.087998900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:06:04.088545700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:06:04.088774800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 正在停止 PID 为 21948 的用户进程
+2025-01-13T00:06:04.088969300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:408 - 尝试优雅终止进程 21948
+2025-01-13T00:06:04.089149900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:412 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:06:04.252736300+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:426 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 21948 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:06:04.252960300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 优雅终止失败，将强制终止进程
+2025-01-13T00:06:04.253154100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 21948
+2025-01-13T00:06:04.253330500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:06:04.927569500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:487 - 进程 21948 已强制终止
+2025-01-13T00:06:04.928198600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:302 - 没有找到运行中的监控进程
+2025-01-13T00:06:04.928714100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:493 - 开始清理端口 5000 的所有进程
+2025-01-13T00:06:04.971799900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:508 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:06:04.972050100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 0
+2025-01-13T00:06:04.972324100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:06:05.108635600+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:06:05.109531+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:510 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:06:05.110345700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:537 - 端口 5000 清理完成
+2025-01-13T00:06:05.110916400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:312 - 进程状态已更新为停止
+2025-01-13T00:06:05.111106600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:313 - 进程停止操作完成
+2025-01-13T00:06:47.151656500+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:06:47.151956400+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:06:47.152476+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:06:47.153262+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:06:47.153535900+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:06:47.153768400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:06:47.154322600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:318 - 检查进程状态
+2025-01-13T00:06:47.154973800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:389 - 没有找到进程PID
+2025-01-13T00:06:47.155227+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:97 - 程序: python
+2025-01-13T00:06:47.155578300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:98 - 参数: ["app/web/app.py"]
+2025-01-13T00:06:47.156645800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:99 - 工作目录: "."
+2025-01-13T00:06:47.156998300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:51 - 以守护进程方式启动...
+2025-01-13T00:06:47.157391600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:55 - Monitor进程ID: 42424
+2025-01-13T00:06:47.157870300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:60 - 保存monitor_pid前的状态: ProcessState { pid: None, monitor_pid: None, program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:06:47.158177700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:62 - 设置monitor_pid后的状态: ProcessState { pid: None, monitor_pid: Some(42424), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:06:47.158959+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:85 - 监控程序路径: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:06:47.159243200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:91 - 进程目录(绝对路径): "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web"
+2025-01-13T00:06:47.159450100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:95 - 配置文件路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:06:47.159655900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:124 - 环境变量:
+2025-01-13T00:06:47.159846100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:126 -   RUST_LOG=info
+2025-01-13T00:06:47.160022800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:136 - 启动参数:
+2025-01-13T00:06:47.160193300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:137 -   程序: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:06:47.160353200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:138 -   工作目录: "."
+2025-01-13T00:06:47.160510800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -   参数列表:
+2025-01-13T00:06:47.160672600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     monitor
+2025-01-13T00:06:47.160853800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --process-name
+2025-01-13T00:06:47.161039700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     web
+2025-01-13T00:06:47.161217600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --program
+2025-01-13T00:06:47.161394500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     python
+2025-01-13T00:06:47.161559700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --config
+2025-01-13T00:06:47.161710200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     \\?\F:\Luoxiaohei\FuckRun\app\web\config.yaml
+2025-01-13T00:06:47.161852500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --arg
+2025-01-13T00:06:47.162054100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     \\?\F:\Luoxiaohei\FuckRun\app\web\app.py
+2025-01-13T00:06:47.162263700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --working-dir
+2025-01-13T00:06:47.162457700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     .
+2025-01-13T00:06:47.162632100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --env
+2025-01-13T00:06:47.162795600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     RUST_LOG=info
+2025-01-13T00:06:47.162956700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --auto-restart
+2025-01-13T00:06:47.163134600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:153 - 正在启动监控进程...
+2025-01-13T00:06:47.166754300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:156 - Windows监控进程已启动, PID: 16940
+2025-01-13T00:06:47.167031400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:159 - 等待进程初始化(5秒)...
+2025-01-13T00:06:47.178429200+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:06:47.178467500+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:06:47.178490500+08:00 [INFO] [fuckrun] src\main.rs:109 - 处理Monitor命令
+2025-01-13T00:06:47.178510700+08:00 [INFO] [fuckrun] src\main.rs:110 - 进程名称: web
+2025-01-13T00:06:47.178519700+08:00 [INFO] [fuckrun] src\main.rs:111 - 程序: python
+2025-01-13T00:06:47.178534200+08:00 [INFO] [fuckrun] src\main.rs:112 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:06:47.178545300+08:00 [INFO] [fuckrun] src\main.rs:113 - 工作目录: "."
+2025-01-13T00:06:47.178554200+08:00 [INFO] [fuckrun] src\main.rs:114 - 环境变量: ["RUST_LOG=info"]
+2025-01-13T00:06:47.178563200+08:00 [INFO] [fuckrun] src\main.rs:115 - 自动重启: true
+2025-01-13T00:06:47.178574100+08:00 [INFO] [fuckrun] src\main.rs:116 - 配置文件: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:06:47.178680+08:00 [INFO] [fuckrun] src\main.rs:121 - 配置文件绝对路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:06:47.178696800+08:00 [INFO] [fuckrun] src\main.rs:124 - 正在加载配置文件...
+2025-01-13T00:06:47.179177800+08:00 [INFO] [fuckrun] src\main.rs:126 - 配置文件加载成功
+2025-01-13T00:06:47.179204800+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:27 - 启动进程监控
+2025-01-13T00:06:47.179215+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:28 - 进程名称: web
+2025-01-13T00:06:47.179223700+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:29 - 程序: python
+2025-01-13T00:06:47.179234400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:30 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:06:47.179244900+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:31 - 工作目录: "."
+2025-01-13T00:06:47.185470+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:65 - 进程已启动, PID: 9584
+2025-01-13T00:06:47.185517300+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:68 - 等待进程初始化(5秒)...
+2025-01-13T00:06:52.201619200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:84 - 进程状态已保存
+2025-01-13T00:06:52.201743100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:94 - 开始监控进程...
+2025-01-13T00:06:52.201783900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:295 - 保存初始进程状态, PID: 9584
+2025-01-13T00:06:52.201916200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:299 - 当前状态: ProcessState { pid: Some(9584), monitor_pid: None, program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:06:52.201946100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:304 - 更新后状态: ProcessState { pid: Some(9584), monitor_pid: None, program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:06:52.202370400+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:06:52.202406600+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:06:52.202576+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:06:52.202598900+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:06:52.202758800+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:06:52.202957500+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:06:52.203134500+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:06:52.324505100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:171 - 监控进程正在运行
+2025-01-13T00:06:52.324788100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:175 - 开始健康检查: http://localhost:5000/health
+2025-01-13T00:06:52.326056600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:182 - 第1次健康检查...
+2025-01-13T00:06:52.331861500+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] 127.0.0.1 - - [13/Jan/2025 00:06:52] "GET /health HTTP/1.1" 200 -
+2025-01-13T00:06:52.332400600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:185 - 收到响应: 200 OK
+2025-01-13T00:06:52.332639300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:187 - 健康检查通过，进程已在后台运行
+2025-01-13T00:06:52.333041700+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:49 - 进程启动成功
+2025-01-13T00:07:04.355330100+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:07:04.355562500+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:07:04.355838500+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:07:04.356498200+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:07:04.356761400+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:07:04.356937600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:07:04.357214+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:07:04.357389700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 正在停止 PID 为 9584 的用户进程
+2025-01-13T00:07:04.357556300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:408 - 尝试优雅终止进程 9584
+2025-01-13T00:07:04.357702400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:412 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:07:04.492241900+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:426 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 9584 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:07:04.492652700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 优雅终止失败，将强制终止进程
+2025-01-13T00:07:04.492939300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 9584
+2025-01-13T00:07:04.493340400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:07:05.137475+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:487 - 进程 9584 已强制终止
+2025-01-13T00:07:05.138092200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:302 - 没有找到运行中的监控进程
+2025-01-13T00:07:05.138689800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:493 - 开始清理端口 5000 的所有进程
+2025-01-13T00:07:05.180423900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:508 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:07:05.180634500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 0
+2025-01-13T00:07:05.180813900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:07:05.320107700+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:07:05.320552300+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:510 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:07:05.321466300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:508 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:07:05.323161700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 0
+2025-01-13T00:07:05.323548800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:07:05.458670900+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:07:05.459093200+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:510 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:07:05.459979100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:537 - 端口 5000 清理完成
+2025-01-13T00:07:05.460565200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:312 - 进程状态已更新为停止
+2025-01-13T00:07:05.460879700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:313 - 进程停止操作完成
+2025-01-13T00:07:34.851068600+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:07:34.851356500+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:07:34.852185700+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:07:34.853586900+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:07:34.854138600+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:07:34.854629600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:07:34.855141800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:07:34.855336500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:290 - 没有找到运行中的用户进程
+2025-01-13T00:07:34.855522800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:302 - 没有找到运行中的监控进程
+2025-01-13T00:07:34.855686200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:493 - 开始清理端口 5000 的所有进程
+2025-01-13T00:07:34.881030100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:508 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:07:34.881294400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 0
+2025-01-13T00:07:34.881489800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:07:35.008695400+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:07:35.009149400+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:510 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:07:35.009867400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:537 - 端口 5000 清理完成
+2025-01-13T00:07:35.010352+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:312 - 进程状态已更新为停止
+2025-01-13T00:07:35.010519800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:313 - 进程停止操作完成
+2025-01-13T00:07:39.415911700+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:07:39.416152400+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:07:39.416401800+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:07:39.417325+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:07:39.417624800+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:07:39.417813600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:07:39.417978600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:318 - 检查进程状态
+2025-01-13T00:07:39.418368900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:389 - 没有找到进程PID
+2025-01-13T00:07:39.418552600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:97 - 程序: python
+2025-01-13T00:07:39.418707200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:98 - 参数: ["app/web/app.py"]
+2025-01-13T00:07:39.418856200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:99 - 工作目录: "."
+2025-01-13T00:07:39.419028600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:51 - 以守护进程方式启动...
+2025-01-13T00:07:39.419181300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:55 - Monitor进程ID: 19312
+2025-01-13T00:07:39.419463+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:60 - 保存monitor_pid前的状态: ProcessState { pid: None, monitor_pid: None, program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:07:39.419637700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:62 - 设置monitor_pid后的状态: ProcessState { pid: None, monitor_pid: Some(19312), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:07:39.420110400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:85 - 监控程序路径: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:07:39.420360800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:91 - 进程目录(绝对路径): "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web"
+2025-01-13T00:07:39.420552400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:95 - 配置文件路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:07:39.420760500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:124 - 环境变量:
+2025-01-13T00:07:39.420908600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:126 -   RUST_LOG=info
+2025-01-13T00:07:39.421057100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:136 - 启动参数:
+2025-01-13T00:07:39.421283800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:137 -   程序: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:07:39.421473600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:138 -   工作目录: "."
+2025-01-13T00:07:39.421700400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -   参数列表:
+2025-01-13T00:07:39.421940400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     monitor
+2025-01-13T00:07:39.422170900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --process-name
+2025-01-13T00:07:39.422381700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     web
+2025-01-13T00:07:39.422594200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --program
+2025-01-13T00:07:39.422766100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     python
+2025-01-13T00:07:39.422930100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --config
+2025-01-13T00:07:39.423088400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     \\?\F:\Luoxiaohei\FuckRun\app\web\config.yaml
+2025-01-13T00:07:39.423228100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --arg
+2025-01-13T00:07:39.423374600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     \\?\F:\Luoxiaohei\FuckRun\app\web\app.py
+2025-01-13T00:07:39.423521+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --working-dir
+2025-01-13T00:07:39.423683900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     .
+2025-01-13T00:07:39.423847500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --env
+2025-01-13T00:07:39.424034900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     RUST_LOG=info
+2025-01-13T00:07:39.424195100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --auto-restart
+2025-01-13T00:07:39.424372500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:153 - 正在启动监控进程...
+2025-01-13T00:07:39.428575700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:156 - Windows监控进程已启动, PID: 30672
+2025-01-13T00:07:39.429015800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:159 - 等待进程初始化(5秒)...
+2025-01-13T00:07:39.440662200+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:07:39.440729700+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:07:39.440782700+08:00 [INFO] [fuckrun] src\main.rs:109 - 处理Monitor命令
+2025-01-13T00:07:39.440818400+08:00 [INFO] [fuckrun] src\main.rs:110 - 进程名称: web
+2025-01-13T00:07:39.440827900+08:00 [INFO] [fuckrun] src\main.rs:111 - 程序: python
+2025-01-13T00:07:39.440844300+08:00 [INFO] [fuckrun] src\main.rs:112 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:07:39.440855400+08:00 [INFO] [fuckrun] src\main.rs:113 - 工作目录: "."
+2025-01-13T00:07:39.440928200+08:00 [INFO] [fuckrun] src\main.rs:114 - 环境变量: ["RUST_LOG=info"]
+2025-01-13T00:07:39.440942100+08:00 [INFO] [fuckrun] src\main.rs:115 - 自动重启: true
+2025-01-13T00:07:39.440953+08:00 [INFO] [fuckrun] src\main.rs:116 - 配置文件: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:07:39.441146800+08:00 [INFO] [fuckrun] src\main.rs:121 - 配置文件绝对路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:07:39.441168200+08:00 [INFO] [fuckrun] src\main.rs:124 - 正在加载配置文件...
+2025-01-13T00:07:39.441599+08:00 [INFO] [fuckrun] src\main.rs:126 - 配置文件加载成功
+2025-01-13T00:07:39.441636700+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:27 - 启动进程监控
+2025-01-13T00:07:39.441644800+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:28 - 进程名称: web
+2025-01-13T00:07:39.441650500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:29 - 程序: python
+2025-01-13T00:07:39.441658+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:30 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:07:39.441665400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:31 - 工作目录: "."
+2025-01-13T00:07:39.447771500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:65 - 进程已启动, PID: 41340
+2025-01-13T00:07:39.447851+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:68 - 等待进程初始化(5秒)...
+2025-01-13T00:07:44.461137600+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:78 - 加载现有状态: ProcessState { pid: None, monitor_pid: Some(19312), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:07:44.461221+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:87 - 更新后状态: ProcessState { pid: Some(41340), monitor_pid: Some(19312), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:07:44.461629200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:89 - 进程状态已保存
+2025-01-13T00:07:44.461732200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:99 - 开始监控进程...
+2025-01-13T00:07:44.461770100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:295 - 保存初始进程状态, PID: 41340
+2025-01-13T00:07:44.461888900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:299 - 当前状态: ProcessState { pid: Some(41340), monitor_pid: Some(19312), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:07:44.461912500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:304 - 更新后状态: ProcessState { pid: Some(41340), monitor_pid: Some(19312), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:07:44.463012400+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:07:44.463200600+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:07:44.463222700+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:07:44.463505700+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:07:44.463671500+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:07:44.463846900+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:07:44.463977400+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:07:44.595128300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:171 - 监控进程正在运行
+2025-01-13T00:07:44.595334800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:175 - 开始健康检查: http://localhost:5000/health
+2025-01-13T00:07:44.596130900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:182 - 第1次健康检查...
+2025-01-13T00:07:44.600066600+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] 127.0.0.1 - - [13/Jan/2025 00:07:44] "GET /health HTTP/1.1" 200 -
+2025-01-13T00:07:44.600533100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:185 - 收到响应: 200 OK
+2025-01-13T00:07:44.600765500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:187 - 健康检查通过，进程已在后台运行
+2025-01-13T00:07:44.601297800+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:49 - 进程启动成功
+2025-01-13T00:07:52.294685800+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:07:52.294929900+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:07:52.295175200+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:07:52.296131300+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:07:52.296706700+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:07:52.297015300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:07:52.298138+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:07:52.298894500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 正在停止 PID 为 41340 的用户进程
+2025-01-13T00:07:52.299450100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:408 - 尝试优雅终止进程 41340
+2025-01-13T00:07:52.299665900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:412 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:07:52.433588900+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:426 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 41340 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:07:52.433829400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 优雅终止失败，将强制终止进程
+2025-01-13T00:07:52.434040+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 41340
+2025-01-13T00:07:52.434231+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:07:52.554358300+08:00 [WARN] [fuckrun::process::daemon] src\process\daemon.rs:320 - 进程异常退出(exit code: 1), 准备重启...
+2025-01-13T00:07:53.069320600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:487 - 进程 41340 已强制终止
+2025-01-13T00:07:53.069873600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:295 - 正在停止 PID 为 19312 的监控进程
+2025-01-13T00:07:53.070209900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:408 - 尝试优雅终止进程 19312
+2025-01-13T00:07:53.070438100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:412 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:07:53.203592100+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:426 - 发送终止信号失败: ����: û���ҵ����� "19312"��
+
+2025-01-13T00:07:53.203811+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:298 - 优雅终止失败，将强制终止监控进程
+2025-01-13T00:07:53.204010100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:459 - 开始强制终止进程 19312
+2025-01-13T00:07:53.204182500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:463 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:07:53.336749500+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:472 - 强制终止进程失败: ����: û���ҵ����� "19312"��
+
+2025-01-13T00:07:55.574841200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:336 - 重启程序路径: C:\Users\Administrator\AppData\Local\Programs\Python\Python312\python.exe
+2025-01-13T00:07:55.574891100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:337 - 重启参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:07:55.574904300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:338 - 工作目录: "."
+2025-01-13T00:07:55.581676700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:351 - 进程已重启, 新PID: 24424
+2025-01-13T00:07:55.582255600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:354 - 重启时当前状态: ProcessState { pid: Some(41340), monitor_pid: Some(19312), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:07:55.582378700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:358 - 重启后更新状态: ProcessState { pid: Some(24424), monitor_pid: Some(19312), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:07:55.997618200+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:07:55.997806200+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:07:56.004749600+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:07:56.005014+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:07:56.005170900+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:07:56.005307+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:07:56.005433800+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:09:27.697981800+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:09:27.698229100+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:09:27.698524800+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:09:27.699332700+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:09:27.699726800+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:09:27.700014+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:09:27.700217100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:350 - 检查进程状态
+2025-01-13T00:09:27.700638800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:355 - 检查PID为24424的进程
+2025-01-13T00:09:27.830818700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:366 - 进程正在运行
+2025-01-13T00:09:27.830999900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:368 - 检查健康状态: http://localhost:5000/health
+2025-01-13T00:09:27.836459800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:373 - 进程健康检查通过
+2025-01-13T00:09:27.836675200+08:00 [ERROR] [fuckrun::process::manager] src\process\manager.rs:93 - 进程已在运行
+2025-01-13T00:09:30.620705900+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:09:30.620940100+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:09:30.621276100+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:09:30.622001400+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:09:30.622269600+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:09:30.622443300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:09:30.622610900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:350 - 检查进程状态
+2025-01-13T00:09:30.622961100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:355 - 检查PID为24424的进程
+2025-01-13T00:09:30.745087100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:366 - 进程正在运行
+2025-01-13T00:09:30.745434100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:368 - 检查健康状态: http://localhost:5000/health
+2025-01-13T00:09:32.806184+08:00 [ERROR] [fuckrun::process::manager] src\process\manager.rs:375 - 进程健康检查失败: 502 Bad Gateway
+2025-01-13T00:09:32.806758500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:97 - 程序: python
+2025-01-13T00:09:32.807309700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:98 - 参数: ["app/web/app.py"]
+2025-01-13T00:09:32.807677500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:99 - 工作目录: "."
+2025-01-13T00:09:32.807997700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:51 - 以守护进程方式启动...
+2025-01-13T00:09:32.808515600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:55 - Monitor进程ID: 45352
+2025-01-13T00:09:32.809282300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:60 - 保存monitor_pid前的状态: ProcessState { pid: Some(24424), monitor_pid: Some(19312), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:09:32.809480500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:62 - 设置monitor_pid后的状态: ProcessState { pid: Some(24424), monitor_pid: Some(45352), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:09:32.810121700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:85 - 监控程序路径: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:09:32.810870500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:91 - 进程目录(绝对路径): "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web"
+2025-01-13T00:09:32.811049100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:95 - 配置文件路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:09:32.811266900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:124 - 环境变量:
+2025-01-13T00:09:32.811721600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:126 -   RUST_LOG=info
+2025-01-13T00:09:32.812221100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:136 - 启动参数:
+2025-01-13T00:09:32.812735300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:137 -   程序: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:09:32.813257400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:138 -   工作目录: "."
+2025-01-13T00:09:32.813460300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -   参数列表:
+2025-01-13T00:09:32.814067400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     monitor
+2025-01-13T00:09:32.814357700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --process-name
+2025-01-13T00:09:32.814989400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     web
+2025-01-13T00:09:32.815474300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --program
+2025-01-13T00:09:32.815879300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     python
+2025-01-13T00:09:32.816128800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --config
+2025-01-13T00:09:32.816536100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     \\?\F:\Luoxiaohei\FuckRun\app\web\config.yaml
+2025-01-13T00:09:32.817146500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --arg
+2025-01-13T00:09:32.817503100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     \\?\F:\Luoxiaohei\FuckRun\app\web\app.py
+2025-01-13T00:09:32.818133+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --working-dir
+2025-01-13T00:09:32.818523900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     .
+2025-01-13T00:09:32.819264800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --env
+2025-01-13T00:09:32.819794+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     RUST_LOG=info
+2025-01-13T00:09:32.820201900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --auto-restart
+2025-01-13T00:09:32.820886300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:153 - 正在启动监控进程...
+2025-01-13T00:09:32.831345400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:156 - Windows监控进程已启动, PID: 43284
+2025-01-13T00:09:32.832434700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:159 - 等待进程初始化(5秒)...
+2025-01-13T00:09:32.852704+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:09:32.852735600+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:09:32.852751500+08:00 [INFO] [fuckrun] src\main.rs:109 - 处理Monitor命令
+2025-01-13T00:09:32.852767100+08:00 [INFO] [fuckrun] src\main.rs:110 - 进程名称: web
+2025-01-13T00:09:32.852772900+08:00 [INFO] [fuckrun] src\main.rs:111 - 程序: python
+2025-01-13T00:09:32.852783600+08:00 [INFO] [fuckrun] src\main.rs:112 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:09:32.852790700+08:00 [INFO] [fuckrun] src\main.rs:113 - 工作目录: "."
+2025-01-13T00:09:32.852796600+08:00 [INFO] [fuckrun] src\main.rs:114 - 环境变量: ["RUST_LOG=info"]
+2025-01-13T00:09:32.852802200+08:00 [INFO] [fuckrun] src\main.rs:115 - 自动重启: true
+2025-01-13T00:09:32.852809100+08:00 [INFO] [fuckrun] src\main.rs:116 - 配置文件: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:09:32.852890700+08:00 [INFO] [fuckrun] src\main.rs:121 - 配置文件绝对路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:09:32.852906300+08:00 [INFO] [fuckrun] src\main.rs:124 - 正在加载配置文件...
+2025-01-13T00:09:32.853318200+08:00 [INFO] [fuckrun] src\main.rs:126 - 配置文件加载成功
+2025-01-13T00:09:32.853354300+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:27 - 启动进程监控
+2025-01-13T00:09:32.853367300+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:28 - 进程名称: web
+2025-01-13T00:09:32.853378100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:29 - 程序: python
+2025-01-13T00:09:32.853391300+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:30 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:09:32.853403900+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:31 - 工作目录: "."
+2025-01-13T00:09:32.861749200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:65 - 进程已启动, PID: 28204
+2025-01-13T00:09:32.861787600+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:68 - 等待进程初始化(5秒)...
+2025-01-13T00:09:37.875881400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:78 - 加载现有状态: ProcessState { pid: Some(24424), monitor_pid: Some(45352), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:09:37.875923400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:87 - 更新后状态: ProcessState { pid: Some(28204), monitor_pid: Some(45352), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:09:37.876247500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:89 - 进程状态已保存
+2025-01-13T00:09:37.876321500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:99 - 开始监控进程...
+2025-01-13T00:09:37.876346100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:295 - 保存初始进程状态, PID: 28204
+2025-01-13T00:09:37.876499900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:299 - 当前状态: ProcessState { pid: Some(28204), monitor_pid: Some(45352), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:09:37.876573500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:304 - 更新后状态: ProcessState { pid: Some(28204), monitor_pid: Some(45352), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:09:37.877285600+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:09:37.877315700+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:09:37.877488300+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:09:37.877591+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:09:37.877690900+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:09:37.877817+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:09:37.877915300+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:09:37.982718700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:171 - 监控进程正在运行
+2025-01-13T00:09:37.982942800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:175 - 开始健康检查: http://localhost:5000/health
+2025-01-13T00:09:37.983220+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:182 - 第1次健康检查...
+2025-01-13T00:09:37.987503+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] 127.0.0.1 - - [13/Jan/2025 00:09:37] "GET /health HTTP/1.1" 200 -
+2025-01-13T00:09:37.988023200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:185 - 收到响应: 200 OK
+2025-01-13T00:09:37.988264600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:187 - 健康检查通过，进程已在后台运行
+2025-01-13T00:09:37.988594800+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:49 - 进程启动成功
+2025-01-13T00:09:44.896224800+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:09:44.896510500+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:09:44.896789800+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:09:44.897342100+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:09:44.897578400+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:09:44.897782200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:09:44.898024800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:09:44.898190500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 检查用户进程 28204 是否存在
+2025-01-13T00:09:45.026332300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 正在停止 PID 为 28204 的用户进程
+2025-01-13T00:09:45.026533+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:440 - 尝试优雅终止进程 28204
+2025-01-13T00:09:45.026742200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:444 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:09:45.157257900+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:458 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 28204 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:09:45.157541400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:288 - 优雅终止失败，将强制终止进程
+2025-01-13T00:09:45.157789700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:491 - 开始强制终止进程 28204
+2025-01-13T00:09:45.158005400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:495 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:09:45.303686300+08:00 [WARN] [fuckrun::process::daemon] src\process\daemon.rs:320 - 进程异常退出(exit code: 1), 准备重启...
+2025-01-13T00:09:45.814461900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:519 - 进程 28204 已强制终止
+2025-01-13T00:09:45.814869300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:300 - 检查监控进程 45352 是否存在
+2025-01-13T00:09:45.975995300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:303 - 正在停止 PID 为 45352 的监控进程
+2025-01-13T00:09:45.976332300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:440 - 尝试优雅终止进程 45352
+2025-01-13T00:09:45.976573100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:444 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:09:46.128039400+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:458 - 发送终止信号失败: ����: û���ҵ����� "45352"��
+
+2025-01-13T00:09:46.128311+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:305 - 优雅终止失败，将强制终止监控进程
+2025-01-13T00:09:46.128594600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:491 - 开始强制终止进程 45352
+2025-01-13T00:09:46.128860100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:495 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:09:46.268178600+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:504 - 强制终止进程失败: ����: û���ҵ����� "45352"��
+
+2025-01-13T00:09:48.317336600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:336 - 重启程序路径: C:\Users\Administrator\AppData\Local\Programs\Python\Python312\python.exe
+2025-01-13T00:09:48.317380700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:337 - 重启参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:09:48.317392700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:338 - 工作目录: "."
+2025-01-13T00:09:48.322907400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:351 - 进程已重启, 新PID: 37772
+2025-01-13T00:09:48.323052200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:354 - 重启时当前状态: ProcessState { pid: Some(28204), monitor_pid: Some(45352), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:09:48.323118500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:357 - 重启后更新状态: ProcessState { pid: Some(37772), monitor_pid: Some(43284), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:09:48.755691500+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:09:48.755954300+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:09:48.763220700+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:09:48.763345500+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:09:48.763439800+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:09:48.763523800+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:09:48.763598800+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:11:59.612020100+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:11:59.612318300+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:11:59.612585300+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:11:59.613490900+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:11:59.613911200+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:11:59.614182300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:11:59.615141800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:11:59.615438+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 检查用户进程 37772 是否存在
+2025-01-13T00:11:59.749585400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 正在停止 PID 为 37772 的用户进程
+2025-01-13T00:11:59.749971400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:460 - 尝试优雅终止进程 37772
+2025-01-13T00:11:59.750356+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:464 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:11:59.883303400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:472 - 已发送终止信号到进程 37772
+2025-01-13T00:12:02.894901300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:474 - 优雅终止等待完成
+2025-01-13T00:12:02.896564200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:300 - 检查监控进程 43284 是否存在
+2025-01-13T00:12:03.058725900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:303 - 正在停止 PID 为 43284 的监控进程
+2025-01-13T00:12:03.058928200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:460 - 尝试优雅终止进程 43284
+2025-01-13T00:12:03.059192600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:464 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:12:03.190287800+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:478 - 发送终止信号失败: ����: û���ҵ����� "43284"��
+
+2025-01-13T00:12:03.190574400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:305 - 优雅终止失败，将强制终止监控进程
+2025-01-13T00:12:03.190857200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 43284
+2025-01-13T00:12:03.191149+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:12:03.322636700+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:524 - 强制终止进程失败: ����: û���ҵ����� "43284"��
+
+2025-01-13T00:12:11.528839500+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:12:11.529098400+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:12:11.529380900+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:12:11.530070900+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:12:11.530332800+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:12:11.530522800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:12:11.530692900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:370 - 检查进程状态
+2025-01-13T00:12:11.530976500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:375 - 检查PID为37772的进程
+2025-01-13T00:12:11.656286700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:386 - 进程正在运行
+2025-01-13T00:12:11.656506900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:388 - 检查健康状态: http://localhost:5000/health
+2025-01-13T00:12:13.718114600+08:00 [ERROR] [fuckrun::process::manager] src\process\manager.rs:395 - 进程健康检查失败: 502 Bad Gateway
+2025-01-13T00:12:13.719078200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:97 - 程序: python
+2025-01-13T00:12:13.719747400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:98 - 参数: ["app/web/app.py"]
+2025-01-13T00:12:13.720351300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:99 - 工作目录: "."
+2025-01-13T00:12:13.720878800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:51 - 以守护进程方式启动...
+2025-01-13T00:12:13.721448900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:55 - Monitor进程ID: 18544
+2025-01-13T00:12:13.722405400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:60 - 保存monitor_pid前的状态: ProcessState { pid: Some(37772), monitor_pid: Some(43284), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:12:13.723149900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:62 - 设置monitor_pid后的状态: ProcessState { pid: Some(37772), monitor_pid: Some(18544), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:12:13.724334400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:85 - 监控程序路径: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:12:13.725123300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:91 - 进程目录(绝对路径): "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web"
+2025-01-13T00:12:13.725406900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:95 - 配置文件路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:12:13.725882900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:124 - 环境变量:
+2025-01-13T00:12:13.726180+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:126 -   RUST_LOG=info
+2025-01-13T00:12:13.727027400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:136 - 启动参数:
+2025-01-13T00:12:13.727710500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:137 -   程序: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:12:13.728478500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:138 -   工作目录: "."
+2025-01-13T00:12:13.728858900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:139 -   参数列表:
+2025-01-13T00:12:13.729101300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     monitor
+2025-01-13T00:12:13.729543200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --process-name
+2025-01-13T00:12:13.729825800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     web
+2025-01-13T00:12:13.730439200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --program
+2025-01-13T00:12:13.730961300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     python
+2025-01-13T00:12:13.731316500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --config
+2025-01-13T00:12:13.731787800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     \\?\F:\Luoxiaohei\FuckRun\app\web\config.yaml
+2025-01-13T00:12:13.732240400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --arg
+2025-01-13T00:12:13.732700700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     \\?\F:\Luoxiaohei\FuckRun\app\web\app.py
+2025-01-13T00:12:13.733171500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --working-dir
+2025-01-13T00:12:13.733511200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     .
+2025-01-13T00:12:13.733829700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --env
+2025-01-13T00:12:13.734137100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     RUST_LOG=info
+2025-01-13T00:12:13.734456200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 -     --auto-restart
+2025-01-13T00:12:13.734921400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:153 - 正在启动监控进程...
+2025-01-13T00:12:13.742061400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:156 - Windows监控进程已启动, PID: 14136
+2025-01-13T00:12:13.742424400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:159 - 等待进程初始化(5秒)...
+2025-01-13T00:12:13.760045500+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:12:13.760104900+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:12:13.760171200+08:00 [INFO] [fuckrun] src\main.rs:109 - 处理Monitor命令
+2025-01-13T00:12:13.760186500+08:00 [INFO] [fuckrun] src\main.rs:110 - 进程名称: web
+2025-01-13T00:12:13.760201500+08:00 [INFO] [fuckrun] src\main.rs:111 - 程序: python
+2025-01-13T00:12:13.760221900+08:00 [INFO] [fuckrun] src\main.rs:112 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:12:13.760235200+08:00 [INFO] [fuckrun] src\main.rs:113 - 工作目录: "."
+2025-01-13T00:12:13.760297500+08:00 [INFO] [fuckrun] src\main.rs:114 - 环境变量: ["RUST_LOG=info"]
+2025-01-13T00:12:13.760308300+08:00 [INFO] [fuckrun] src\main.rs:115 - 自动重启: true
+2025-01-13T00:12:13.760318200+08:00 [INFO] [fuckrun] src\main.rs:116 - 配置文件: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:12:13.760531500+08:00 [INFO] [fuckrun] src\main.rs:121 - 配置文件绝对路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:12:13.760561900+08:00 [INFO] [fuckrun] src\main.rs:124 - 正在加载配置文件...
+2025-01-13T00:12:13.761119200+08:00 [INFO] [fuckrun] src\main.rs:126 - 配置文件加载成功
+2025-01-13T00:12:13.761149500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:27 - 启动进程监控
+2025-01-13T00:12:13.761159+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:28 - 进程名称: web
+2025-01-13T00:12:13.761166900+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:29 - 程序: python
+2025-01-13T00:12:13.761177200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:30 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:12:13.761186400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:31 - 工作目录: "."
+2025-01-13T00:12:13.768696100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:65 - 进程已启动, PID: 36720
+2025-01-13T00:12:13.768759+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:68 - 等待进程初始化(5秒)...
+2025-01-13T00:12:18.772672900+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:78 - 加载现有状态: ProcessState { pid: Some(37772), monitor_pid: Some(18544), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:12:18.772821300+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:87 - 更新后状态: ProcessState { pid: Some(36720), monitor_pid: Some(18544), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:12:18.774585300+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:89 - 进程状态已保存
+2025-01-13T00:12:18.774843800+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:99 - 开始监控进程...
+2025-01-13T00:12:18.774920600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:295 - 保存初始进程状态, PID: 36720
+2025-01-13T00:12:18.775304300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:299 - 当前状态: ProcessState { pid: Some(36720), monitor_pid: Some(18544), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:12:18.775372600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:302 - 更新后状态: ProcessState { pid: Some(36720), monitor_pid: Some(18544), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:12:18.778659900+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:12:18.780687300+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:12:18.780771100+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:12:18.781035700+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:12:18.782045800+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:12:18.782781300+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:12:18.783532200+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:12:18.931875800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:171 - 监控进程正在运行
+2025-01-13T00:12:18.932172400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:175 - 开始健康检查: http://localhost:5000/health
+2025-01-13T00:12:18.932515+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:182 - 第1次健康检查...
+2025-01-13T00:12:18.935615300+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] 127.0.0.1 - - [13/Jan/2025 00:12:18] "GET /health HTTP/1.1" 200 -
+2025-01-13T00:12:18.936143800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:185 - 收到响应: 200 OK
+2025-01-13T00:12:18.936376200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:187 - 健康检查通过，进程已在后台运行
+2025-01-13T00:12:18.936663700+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:49 - 进程启动成功
+2025-01-13T00:14:16.596146+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:14:16.596502100+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:14:16.596992900+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:14:16.600034400+08:00 [INFO] [fuckrun::commands::status] src\commands\status.rs:14 - 检查进程状态: web
+2025-01-13T00:14:16.601611400+08:00 [INFO] [fuckrun::commands::status] src\commands\status.rs:18 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:14:16.601894900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:370 - 检查进程状态
+2025-01-13T00:14:16.602463500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:375 - 检查PID为36720的进程
+2025-01-13T00:14:16.731386100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:386 - 进程正在运行
+2025-01-13T00:14:16.731837600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:388 - 检查健康状态: http://localhost:5000/health
+2025-01-13T00:14:16.737434600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:393 - 进程健康检查通过
+2025-01-13T00:14:16.737729100+08:00 [INFO] [fuckrun::commands::status] src\commands\status.rs:28 - 进程正在运行
+2025-01-13T00:14:19.747914500+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:14:19.748233800+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:14:19.748695700+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:14:19.749450600+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:14:19.749704400+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:14:19.749923400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:14:19.750179900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:14:19.750335600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 检查用户进程 36720 是否存在
+2025-01-13T00:14:19.876741900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 正在停止 PID 为 36720 的用户进程
+2025-01-13T00:14:19.876969600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:460 - 尝试优雅终止进程 36720
+2025-01-13T00:14:19.877167100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:464 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:14:20.007154800+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:478 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 36720 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:14:20.007631200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:288 - 优雅终止失败，将强制终止进程
+2025-01-13T00:14:20.008226200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 36720
+2025-01-13T00:14:20.008496800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:14:20.645731100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:539 - 进程 36720 已强制终止
+2025-01-13T00:14:20.646360500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:300 - 检查监控进程 18544 是否存在
+2025-01-13T00:14:20.795330600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:303 - 正在停止 PID 为 18544 的监控进程
+2025-01-13T00:14:20.795521100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:460 - 尝试优雅终止进程 18544
+2025-01-13T00:14:20.795731400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:464 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:14:20.917338200+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:478 - 发送终止信号失败: ����: û���ҵ����� "18544"��
+
+2025-01-13T00:14:20.917539200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:305 - 优雅终止失败，将强制终止监控进程
+2025-01-13T00:14:20.917728300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 18544
+2025-01-13T00:14:20.917889700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:14:21.036723300+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:524 - 强制终止进程失败: ����: û���ҵ����� "18544"��
+
+2025-01-13T00:14:25.438777+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:14:25.438990600+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:14:25.439227300+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:14:25.439881+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:14:25.440094600+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:14:25.440317400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:14:25.440519400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:370 - 检查进程状态
+2025-01-13T00:14:25.440812300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:375 - 检查PID为36720的进程
+2025-01-13T00:14:25.565919200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:386 - 进程正在运行
+2025-01-13T00:14:25.566132300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:388 - 检查健康状态: http://localhost:5000/health
+2025-01-13T00:14:27.621641700+08:00 [ERROR] [fuckrun::process::manager] src\process\manager.rs:395 - 进程健康检查失败: 502 Bad Gateway
+2025-01-13T00:14:27.622070700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:97 - 程序: python
+2025-01-13T00:14:27.622505200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:98 - 参数: ["app/web/app.py"]
+2025-01-13T00:14:27.622918500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:99 - 工作目录: "."
+2025-01-13T00:14:27.623401400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:51 - 以守护进程方式启动...
+2025-01-13T00:14:27.623878300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:73 - 监控程序路径: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:14:27.624436300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:79 - 进程目录(绝对路径): "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web"
+2025-01-13T00:14:27.624740700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:83 - 配置文件路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:14:27.625061+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:112 - 环境变量:
+2025-01-13T00:14:27.625347+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:114 -   RUST_LOG=info
+2025-01-13T00:14:27.625655700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:124 - 启动参数:
+2025-01-13T00:14:27.625955+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:125 -   程序: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:14:27.626256700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:126 -   工作目录: "."
+2025-01-13T00:14:27.626636200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:127 -   参数列表:
+2025-01-13T00:14:27.626851600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     monitor
+2025-01-13T00:14:27.627154100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --process-name
+2025-01-13T00:14:27.627349100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     web
+2025-01-13T00:14:27.627559800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --program
+2025-01-13T00:14:27.627805+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     python
+2025-01-13T00:14:27.628111+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --config
+2025-01-13T00:14:27.628338+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     \\?\F:\Luoxiaohei\FuckRun\app\web\config.yaml
+2025-01-13T00:14:27.629129200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --arg
+2025-01-13T00:14:27.629610900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     \\?\F:\Luoxiaohei\FuckRun\app\web\app.py
+2025-01-13T00:14:27.630123200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --working-dir
+2025-01-13T00:14:27.630549800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     .
+2025-01-13T00:14:27.630986+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --env
+2025-01-13T00:14:27.631280500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     RUST_LOG=info
+2025-01-13T00:14:27.631601300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --auto-restart
+2025-01-13T00:14:27.631822200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 - 正在启动监控进程...
+2025-01-13T00:14:27.636121+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:144 - Windows监控进程已启动, PID: 7136
+2025-01-13T00:14:27.637051100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:149 - 保存monitor_pid前的状态: ProcessState { pid: Some(36720), monitor_pid: Some(18544), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:14:27.637535800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:151 - 设置monitor_pid后的状态: ProcessState { pid: Some(36720), monitor_pid: Some(7136), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:14:27.638469100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:155 - 等待进程初始化(5秒)...
+2025-01-13T00:14:27.650475700+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:14:27.650512100+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:14:27.650531900+08:00 [INFO] [fuckrun] src\main.rs:109 - 处理Monitor命令
+2025-01-13T00:14:27.650540900+08:00 [INFO] [fuckrun] src\main.rs:110 - 进程名称: web
+2025-01-13T00:14:27.650549+08:00 [INFO] [fuckrun] src\main.rs:111 - 程序: python
+2025-01-13T00:14:27.650562700+08:00 [INFO] [fuckrun] src\main.rs:112 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:14:27.650572700+08:00 [INFO] [fuckrun] src\main.rs:113 - 工作目录: "."
+2025-01-13T00:14:27.650581+08:00 [INFO] [fuckrun] src\main.rs:114 - 环境变量: ["RUST_LOG=info"]
+2025-01-13T00:14:27.650589600+08:00 [INFO] [fuckrun] src\main.rs:115 - 自动重启: true
+2025-01-13T00:14:27.650599300+08:00 [INFO] [fuckrun] src\main.rs:116 - 配置文件: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:14:27.650698400+08:00 [INFO] [fuckrun] src\main.rs:121 - 配置文件绝对路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:14:27.650708600+08:00 [INFO] [fuckrun] src\main.rs:124 - 正在加载配置文件...
+2025-01-13T00:14:27.651035600+08:00 [INFO] [fuckrun] src\main.rs:126 - 配置文件加载成功
+2025-01-13T00:14:27.651060200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:27 - 启动进程监控
+2025-01-13T00:14:27.651067200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:28 - 进程名称: web
+2025-01-13T00:14:27.651072800+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:29 - 程序: python
+2025-01-13T00:14:27.651079800+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:30 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:14:27.651086600+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:31 - 工作目录: "."
+2025-01-13T00:14:27.658072100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:65 - 进程已启动, PID: 27720
+2025-01-13T00:14:27.658185500+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:68 - 等待进程初始化(5秒)...
+2025-01-13T00:14:32.666729+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:78 - 加载现有状态: ProcessState { pid: Some(36720), monitor_pid: Some(7136), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:14:32.666872400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:87 - 更新后状态: ProcessState { pid: Some(27720), monitor_pid: Some(7136), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:14:32.667758100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:89 - 进程状态已保存
+2025-01-13T00:14:32.667854200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:99 - 开始监控进程...
+2025-01-13T00:14:32.667893100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:287 - 保存初始进程状态, PID: 27720
+2025-01-13T00:14:32.668037600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:291 - 当前状态: ProcessState { pid: Some(27720), monitor_pid: Some(7136), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:14:32.668063+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:294 - 更新后状态: ProcessState { pid: Some(27720), monitor_pid: Some(7136), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:14:32.669565900+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:14:32.669817800+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:14:32.669979400+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:14:32.670236+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:14:32.670875700+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:14:32.671572300+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:14:32.672053600+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:14:32.803025400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:167 - 监控进程正在运行
+2025-01-13T00:14:32.803228400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:171 - 开始健康检查: http://localhost:5000/health
+2025-01-13T00:14:32.803450900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:178 - 第1次健康检查...
+2025-01-13T00:14:32.808039+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] 127.0.0.1 - - [13/Jan/2025 00:14:32] "GET /health HTTP/1.1" 200 -
+2025-01-13T00:14:32.808501700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:181 - 收到响应: 200 OK
+2025-01-13T00:14:32.808736700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:183 - 健康检查通过，进程已在后台运行
+2025-01-13T00:14:32.809047200+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:49 - 进程启动成功
+2025-01-13T00:14:40.800016700+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:14:40.800310300+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:14:40.801153500+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:14:40.802299400+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:14:40.802651100+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:14:40.803010100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:14:40.803414900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:14:40.803668600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 检查用户进程 27720 是否存在
+2025-01-13T00:14:40.926560700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 正在停止 PID 为 27720 的用户进程
+2025-01-13T00:14:40.926912700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:460 - 尝试优雅终止进程 27720
+2025-01-13T00:14:40.927550400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:464 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:14:41.050470800+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:478 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 27720 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:14:41.050663400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:288 - 优雅终止失败，将强制终止进程
+2025-01-13T00:14:41.050837400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 27720
+2025-01-13T00:14:41.051068200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:14:41.168048600+08:00 [WARN] [fuckrun::process::daemon] src\process\daemon.rs:310 - 进程异常退出(exit code: 1), 准备重启...
+2025-01-13T00:14:41.677839200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:539 - 进程 27720 已强制终止
+2025-01-13T00:14:41.678264100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:300 - 检查监控进程 7136 是否存在
+2025-01-13T00:14:41.823877600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:303 - 正在停止 PID 为 7136 的监控进程
+2025-01-13T00:14:41.824093200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:460 - 尝试优雅终止进程 7136
+2025-01-13T00:14:41.824301+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:464 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:14:41.954573600+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:478 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 7136 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:14:41.954918800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:305 - 优雅终止失败，将强制终止监控进程
+2025-01-13T00:14:41.955267900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 7136
+2025-01-13T00:14:41.955566400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:14:42.578942200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:539 - 进程 7136 已强制终止
+2025-01-13T00:14:42.579529+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:545 - 开始清理端口 5000 的所有进程
+2025-01-13T00:14:42.631064500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:560 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:14:42.631453+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 0
+2025-01-13T00:14:42.631707300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:14:42.750305600+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:524 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:14:42.750829500+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:562 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:14:42.751164800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:560 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:14:42.751415100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 0
+2025-01-13T00:14:42.751624700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:14:42.871347+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:524 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:14:42.871604600+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:562 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:14:42.872052900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:589 - 端口 5000 清理完成
+2025-01-13T00:14:42.872554400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:342 - 进程状态已更新为停止
+2025-01-13T00:14:42.872732900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:343 - 进程停止操作完成
+2025-01-13T00:16:38.377362100+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:16:38.377593800+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:16:38.377827200+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:16:38.378617800+08:00 [INFO] [fuckrun::commands::status] src\commands\status.rs:14 - 检查进程状态: web
+2025-01-13T00:16:38.378891200+08:00 [INFO] [fuckrun::commands::status] src\commands\status.rs:18 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:16:38.379126400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:370 - 检查进程状态
+2025-01-13T00:16:38.379436200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:441 - 没有找到进程PID
+2025-01-13T00:16:38.379608200+08:00 [INFO] [fuckrun::commands::status] src\commands\status.rs:30 - 进程未运行
+2025-01-13T00:16:48.055072500+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:16:48.055830600+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:16:48.056200500+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:16:48.057353+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:18 - 启动进程: web
+2025-01-13T00:16:48.057787400+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:22 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:16:48.058000300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:90 - 准备启动进程...
+2025-01-13T00:16:48.058197600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:370 - 检查进程状态
+2025-01-13T00:16:48.058548800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:441 - 没有找到进程PID
+2025-01-13T00:16:48.058752600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:97 - 程序: python
+2025-01-13T00:16:48.058946100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:98 - 参数: ["app/web/app.py"]
+2025-01-13T00:16:48.059153300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:99 - 工作目录: "."
+2025-01-13T00:16:48.059355700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:51 - 以守护进程方式启动...
+2025-01-13T00:16:48.059622400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:73 - 监控程序路径: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:16:48.059957400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:79 - 进程目录(绝对路径): "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web"
+2025-01-13T00:16:48.060152100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:83 - 配置文件路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:16:48.060402500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:112 - 环境变量:
+2025-01-13T00:16:48.060602100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:114 -   RUST_LOG=info
+2025-01-13T00:16:48.060775800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:124 - 启动参数:
+2025-01-13T00:16:48.060947+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:125 -   程序: "F:\\Luoxiaohei\\FuckRun\\target\\debug\\fuckrun.exe"
+2025-01-13T00:16:48.061123400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:126 -   工作目录: "."
+2025-01-13T00:16:48.061306800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:127 -   参数列表:
+2025-01-13T00:16:48.061473200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     monitor
+2025-01-13T00:16:48.061648500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --process-name
+2025-01-13T00:16:48.061815100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     web
+2025-01-13T00:16:48.061977200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --program
+2025-01-13T00:16:48.062139400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     python
+2025-01-13T00:16:48.062300800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --config
+2025-01-13T00:16:48.062467900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     \\?\F:\Luoxiaohei\FuckRun\app\web\config.yaml
+2025-01-13T00:16:48.062632100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --arg
+2025-01-13T00:16:48.062799800+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     \\?\F:\Luoxiaohei\FuckRun\app\web\app.py
+2025-01-13T00:16:48.063020500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --working-dir
+2025-01-13T00:16:48.063296100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     .
+2025-01-13T00:16:48.063547400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --env
+2025-01-13T00:16:48.063898200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     RUST_LOG=info
+2025-01-13T00:16:48.064224700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:129 -     --auto-restart
+2025-01-13T00:16:48.064574500+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:141 - 正在启动监控进程...
+2025-01-13T00:16:48.068525+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:144 - Windows监控进程已启动, PID: 26568
+2025-01-13T00:16:48.069114700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:149 - 保存monitor_pid前的状态: ProcessState { pid: None, monitor_pid: None, program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:16:48.069429600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:151 - 设置monitor_pid后的状态: ProcessState { pid: None, monitor_pid: Some(26568), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:16:48.069941600+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:155 - 等待进程初始化(5秒)...
+2025-01-13T00:16:48.078697+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:16:48.078724+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:16:48.078754+08:00 [INFO] [fuckrun] src\main.rs:109 - 处理Monitor命令
+2025-01-13T00:16:48.078760400+08:00 [INFO] [fuckrun] src\main.rs:110 - 进程名称: web
+2025-01-13T00:16:48.078766300+08:00 [INFO] [fuckrun] src\main.rs:111 - 程序: python
+2025-01-13T00:16:48.078776100+08:00 [INFO] [fuckrun] src\main.rs:112 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:16:48.078783200+08:00 [INFO] [fuckrun] src\main.rs:113 - 工作目录: "."
+2025-01-13T00:16:48.078789100+08:00 [INFO] [fuckrun] src\main.rs:114 - 环境变量: ["RUST_LOG=info"]
+2025-01-13T00:16:48.078797300+08:00 [INFO] [fuckrun] src\main.rs:115 - 自动重启: true
+2025-01-13T00:16:48.078804+08:00 [INFO] [fuckrun] src\main.rs:116 - 配置文件: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:16:48.078897200+08:00 [INFO] [fuckrun] src\main.rs:121 - 配置文件绝对路径: "\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\config.yaml"
+2025-01-13T00:16:48.078907800+08:00 [INFO] [fuckrun] src\main.rs:124 - 正在加载配置文件...
+2025-01-13T00:16:48.079221600+08:00 [INFO] [fuckrun] src\main.rs:126 - 配置文件加载成功
+2025-01-13T00:16:48.079241700+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:27 - 启动进程监控
+2025-01-13T00:16:48.079248400+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:28 - 进程名称: web
+2025-01-13T00:16:48.079254200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:29 - 程序: python
+2025-01-13T00:16:48.079261200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:30 - 参数: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"]
+2025-01-13T00:16:48.079267900+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:31 - 工作目录: "."
+2025-01-13T00:16:48.084862100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:65 - 进程已启动, PID: 26288
+2025-01-13T00:16:48.084909600+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:68 - 等待进程初始化(5秒)...
+2025-01-13T00:16:53.098694100+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:78 - 加载现有状态: ProcessState { pid: None, monitor_pid: Some(26568), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:16:53.098761+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:87 - 更新后状态: ProcessState { pid: Some(26288), monitor_pid: Some(26568), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:16:53.099930700+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:89 - 进程状态已保存
+2025-01-13T00:16:53.100466200+08:00 [INFO] [fuckrun::commands::monitor] src\commands\monitor.rs:99 - 开始监控进程...
+2025-01-13T00:16:53.100620100+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:287 - 保存初始进程状态, PID: 26288
+2025-01-13T00:16:53.101115+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:291 - 当前状态: ProcessState { pid: Some(26288), monitor_pid: Some(26568), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:16:53.101233400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:294 - 更新后状态: ProcessState { pid: Some(26288), monitor_pid: Some(26568), program: "python", args: ["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"], working_dir: ".", port: 5000, health_check_url: Some("http://localhost:5000/health") }
+2025-01-13T00:16:53.101350500+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Serving Flask app 'app'
+2025-01-13T00:16:53.101649500+08:00 [INFO] [fuckrun::logger] src\logger.rs:139 - [web][stdout]  * Debug mode: off
+2025-01-13T00:16:53.102041200+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-01-13T00:16:53.102635700+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on all addresses (0.0.0.0)
+2025-01-13T00:16:53.103137300+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://127.0.0.1:5000
+2025-01-13T00:16:53.103588500+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr]  * Running on http://192.168.1.6:5000
+2025-01-13T00:16:53.104123800+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] Press CTRL+C to quit
+2025-01-13T00:16:53.299441900+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:167 - 监控进程正在运行
+2025-01-13T00:16:53.299679700+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:171 - 开始健康检查: http://localhost:5000/health
+2025-01-13T00:16:53.300751400+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:178 - 第1次健康检查...
+2025-01-13T00:16:53.304641200+08:00 [INFO] [fuckrun::logger] src\logger.rs:160 - [web][stderr] 127.0.0.1 - - [13/Jan/2025 00:16:53] "GET /health HTTP/1.1" 200 -
+2025-01-13T00:16:53.305044200+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:181 - 收到响应: 200 OK
+2025-01-13T00:16:53.305261300+08:00 [INFO] [fuckrun::process::daemon] src\process\daemon.rs:183 - 健康检查通过，进程已在后台运行
+2025-01-13T00:16:53.305533+08:00 [INFO] [fuckrun::commands::start] src\commands\start.rs:49 - 进程启动成功
+2025-01-13T00:17:25.724062800+08:00 [INFO] [fuckrun::logger] src\logger.rs:95 - 日志系统初始化完成
+2025-01-13T00:17:25.724376700+08:00 [INFO] [fuckrun] src\main.rs:37 - 程序启动
+2025-01-13T00:17:25.724849600+08:00 [INFO] [fuckrun] src\main.rs:59 - 使用配置文件: ".\\app\\web\\config.yaml"
+2025-01-13T00:17:25.725643+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:13 - 正在停止进程: web
+2025-01-13T00:17:25.725898500+08:00 [INFO] [fuckrun::commands::stop] src\commands\stop.rs:17 - 找到进程配置: ProcessConfig { name: "web", program: "python", args: ["app/web/app.py"], working_dir: ".", env: {"RUST_LOG": "info"}, auto_restart: true, start_delay: 5, max_restarts: 3, depends_on: [], health_check_url: Some("http://localhost:5000/health"), log: LogConfig { file: Some("logs/web.log"), level: "debug", max_size: 200, max_files: 10 }, process: ProcessConfig { default_port: 5000, init_wait_secs: 5, health_check_timeout_secs: 5, health_check_retries: 10, retry_interval_secs: 2, graceful_shutdown_timeout_secs: 3, windows_process_flags: 520, exit_wait_ms: 500, default_python_interpreter: "python", default_script_path: "examples/simple_web.py" } }
+2025-01-13T00:17:25.726140400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:273 - 开始停止进程
+2025-01-13T00:17:25.726376200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:279 - 当前进程使用端口: 5000
+2025-01-13T00:17:25.726531800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:283 - 检查用户进程 26288 是否存在
+2025-01-13T00:17:25.862454400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:286 - 正在停止 PID 为 26288 的用户进程
+2025-01-13T00:17:25.863007+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:460 - 尝试优雅终止进程 26288
+2025-01-13T00:17:25.863291700+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:464 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:17:25.999023800+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:478 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 26288 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:17:25.999270900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:288 - 优雅终止失败，将强制终止进程
+2025-01-13T00:17:25.999506400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 26288
+2025-01-13T00:17:25.999700800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:17:26.123351100+08:00 [WARN] [fuckrun::process::daemon] src\process\daemon.rs:310 - 进程异常退出(exit code: 1), 准备重启...
+2025-01-13T00:17:26.634291400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:539 - 进程 26288 已强制终止
+2025-01-13T00:17:26.634731800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:300 - 检查监控进程 26568 是否存在
+2025-01-13T00:17:26.783004400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:303 - 正在停止 PID 为 26568 的监控进程
+2025-01-13T00:17:26.783426400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:460 - 尝试优雅终止进程 26568
+2025-01-13T00:17:26.783698100+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:464 - Windows 平台：使用 taskkill /PID 发送终止信号
+2025-01-13T00:17:26.926651500+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:478 - 发送终止信号失败: ����: �޷���ֹ PID Ϊ 26568 �Ľ��̡�
+ԭ��: ֻ��ǿ����ֹ�������(�� /F ѡ��)��
+
+2025-01-13T00:17:26.926865600+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:305 - 优雅终止失败，将强制终止监控进程
+2025-01-13T00:17:26.927039300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 26568
+2025-01-13T00:17:26.927202500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:17:27.566628800+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:539 - 进程 26568 已强制终止
+2025-01-13T00:17:27.567236900+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:545 - 开始清理端口 5000 的所有进程
+2025-01-13T00:17:27.609676400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:560 - 发现占用端口 5000 的进程: 0
+2025-01-13T00:17:27.610097200+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:511 - 开始强制终止进程 0
+2025-01-13T00:17:27.610494400+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:515 - Windows 平台：使用 taskkill /F 强制终止
+2025-01-13T00:17:27.741261+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:524 - 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:17:27.741594300+08:00 [WARN] [fuckrun::process::manager] src\process\manager.rs:562 - 终止进程 0 失败: 强制终止进程失败: ����: �޷���ֹ PID Ϊ 0 �Ľ��̡�
+ԭ��: ����һ���ؼ�ϵͳ���̡�Taskkill�޷�����������̡�
+
+2025-01-13T00:17:27.742550500+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:589 - 端口 5000 清理完成
+2025-01-13T00:17:27.743007300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:342 - 进程状态已更新为停止
+2025-01-13T00:17:27.743208300+08:00 [INFO] [fuckrun::process::manager] src\process\manager.rs:343 - 进程停止操作完成

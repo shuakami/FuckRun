@@ -34,7 +34,7 @@ processes:
     health_check_url: http://localhost:5000/health
     log:
       file: logs/web.log
-      level: info
+      level: debug
       max_size: 100
       max_files: 5
     process:

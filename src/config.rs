@@ -90,10 +90,15 @@ pub struct GlobalConfig {
 impl Config {
     /// 从文件加载配置
     pub fn from_file<P: AsRef<Path>>(path: P) -> Result<Self> {
-        let content = fs::read_to_string(path.as_ref())
+        let path = path.as_ref();
+        if !path.exists() {
+            return Err(anyhow::anyhow!("配置文件不存在: {}", path.display()));
+        }
+        
+        let content = fs::read_to_string(path)
             .context("读取配置文件失败")?;
         
-        let config = if path.as_ref().extension().map_or(false, |ext| ext == "json") {
+        let config = if path.extension().map_or(false, |ext| ext == "json") {
             serde_json::from_str(&content).context("解析JSON配置文件失败")?
         } else {
             serde_yaml::from_str(&content).context("解析YAML配置文件失败")?
@@ -146,6 +151,35 @@ impl Config {
         }
 
         Some(config)
+    }
+
+    /// 查找配置文件
+    pub fn find_config_file(process_name: Option<&str>, workspace: &crate::workspace::Workspace) -> PathBuf {
+        if let Some(name) = process_name {
+            // 1. 检查进程目录
+            let process_config = workspace.get_root_dir()
+                .join("app")
+                .join(name)
+                .join("config.yaml");
+            if process_config.exists() {
+                return process_config;
+            }
+
+            // 2. 检查.fuckrun进程目录
+            let fuckrun_config = workspace.get_process_dir(name)
+                .join("config.yaml");
+            if fuckrun_config.exists() {
+                return fuckrun_config;
+            }
+        }
+
+        // 3. 使用根目录配置
+        workspace.get_root_dir().join("config.yaml")
+    }
+
+    /// 获取配置文件路径
+    pub fn get_config_path(&self, process_name: Option<&str>, workspace: &crate::workspace::Workspace) -> Result<PathBuf> {
+        Ok(Self::find_config_file(process_name, workspace))
     }
 }
 

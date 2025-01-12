@@ -4,6 +4,7 @@ use log::{info, warn};
 use std::fs;
 
 /// 工作区管理器
+#[derive(Clone)]
 pub struct Workspace {
     /// 项目根目录
     root: PathBuf,
@@ -96,14 +97,14 @@ impl Workspace {
         &self.app_dir
     }
 
-    /// 获取 FuckRun 工作目录
-    pub fn get_fuckrun_dir(&self) -> &Path {
-        &self.fuckrun_dir
-    }
-
     /// 获取项目根目录
     pub fn get_root_dir(&self) -> &Path {
         &self.root
+    }
+
+    /// 获取 FuckRun 工作目录
+    pub fn get_fuckrun_dir(&self) -> &Path {
+        &self.fuckrun_dir
     }
 
     /// 确保进程目录结构存在

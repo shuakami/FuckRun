@@ -8,6 +8,7 @@ use crate::workspace::Workspace;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProcessState {
     pub pid: Option<i32>,
+    pub monitor_pid: Option<i32>,  // 添加monitor_pid字段
     pub program: String,
     pub args: Vec<String>,
     pub working_dir: PathBuf,
@@ -19,6 +20,7 @@ impl Default for ProcessState {
     fn default() -> Self {
         Self {
             pid: None,
+            monitor_pid: None,  // 初始化monitor_pid
             program: String::new(),
             args: Vec::new(),
             working_dir: PathBuf::from("."),
@@ -32,6 +34,7 @@ impl ProcessState {
     pub fn new(program: String, args: Vec<String>, working_dir: PathBuf, port: u16) -> Self {
         Self {
             pid: None,
+            monitor_pid: None,  // 初始化monitor_pid
             program,
             args,
             working_dir,
@@ -63,6 +66,7 @@ impl ProcessState {
     /// 更新为已停止状态
     pub fn update_stopped_state(&mut self) {
         self.pid = None;
+        self.monitor_pid = None;  // 清除monitor_pid
     }
 
     /// 清除状态文件（仅在需要完全清理进程数据时使用）
