@@ -31,43 +31,152 @@ cd fuckrun
 cargo build --release
 ```
 
-启动一个进程就是这么简单：
+### 核心命令
+
+FuckRun提供了一组简洁而强大的命令：
 
 ```bash
+# 启动进程
 fuckrun start -n web
+
+# 停止进程
+fuckrun stop -n web
+
+# 查看进程状态
+fuckrun status -n web
+
+# 查看进程日志
+fuckrun logs -n web -f
+
+# 查看系统日志
+fuckrun system-logs -f
+
+# 列出所有进程
+fuckrun list
 ```
 
-## ⚙️ 配置说明
+每个命令都支持丰富的选项，例如：
+- 守护进程模式（--daemon）
+- 自动重启（--auto-restart）
+- 端口指定（--port）
+- 环境变量注入（--env）
+- 实时日志跟踪（-f/--follow）
 
-FuckRun支持**YAML**配置文件，这是一个典型的配置示例：
+## 📂 工作区结构
+
+FuckRun采用清晰的工作区结构，让进程管理更加有序：
+
+```
+.
+├── app/                    # 应用程序目录
+│   └── {process}/         # 进程专属目录
+│       ├── app.py         # 应用程序
+│       └── config.yaml    # 进程配置
+│
+├── .fuckrun/              # FuckRun工作目录
+│   ├── processes/         # 进程管理目录
+│   │   └── {process}/    # 进程状态目录
+│   │       ├── state.json # 进程状态
+│   │       └── logs/     # 进程日志
+│   │           ├── stdout.log
+│   │           └── stderr.log
+│   └── logs/             # 系统日志目录
+│       └── {date}/      # 按日期组织
+│           └── fuckrun.log
+│
+└── config.yaml           # 全局配置文件
+```
+
+## ⚙️ 配置系统
+
+FuckRun支持**YAML**和**JSON**格式的配置文件，提供了强大而灵活的配置能力：
 
 ```yaml
 global:
+  # 全局工作目录
   working_dir: .
+  # 全局环境变量
   env:
     RUST_LOG: info
+  # 日志配置
   log:
     file: logs/app.log
     level: debug
+    max_size: 100  # MB
+    max_files: 5
+  # 进程管理配置
+  process:
+    init_wait_secs: 3
+    health_check_retries: 3
+    health_check_timeout: 5
 
+# 进程配置
 processes:
   web:
+    # 基本配置
     program: python
     args: ["app.py"]
+    working_dir: ./app/web
+    
+    # 运行控制
     auto_restart: true
+    start_delay: 0
+    max_restarts: 3
+    
+    # 健康检查
     health_check_url: http://localhost:5000/health
+    
+    # 环境变量
+    env:
+      PORT: "5000"
+      DEBUG: "true"
+    
+    # 日志配置
+    log:
+      level: debug
+      max_size: 200
+      max_files: 10
 ```
 
-所有配置项都提供了**合理的默认值**，你只需要关注你关心的配置即可。
+## 🔧 平台特性
+
+FuckRun在不同平台上提供了优化的实现：
+
+### Windows
+- 使用独立的monitor进程
+- 支持进程分离（DETACHED_PROCESS）
+- 进程组管理
+- UTF-8编码支持
+
+### Unix/Linux
+- 标准的双fork守护进程
+- 会话管理（setsid）
+- 文件描述符重定向
+- 权限管理（umask）
 
 ## 📚 示例
 
 我们在[examples](examples)目录提供了一些常见场景的示例：
 
-- 🌐 简单的Web服务管理
-- 🔗 多进程协同工作
-- 🏥 自定义健康检查
-- 📝 日志管理配置
+- 🌐 Web服务管理
+  - Python Flask应用
+  - Node.js Express服务
+  - Rust Actix应用
+
+- 🔗 多进程协同
+  - 主从架构
+  - 微服务集群
+  - 任务处理池
+
+- 🏥 健康检查
+  - HTTP健康检查
+  - TCP端口检查
+  - 自定义检查脚本
+
+- 📝 日志管理
+  - 日志轮转
+  - 多进程日志
+  - 日志聚合
 
 ## 📄 开源协议
 

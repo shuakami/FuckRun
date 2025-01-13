@@ -99,6 +99,7 @@ pub async fn handle_monitor(
     info!("开始监控进程...");
     
     // 等待监控完成
+    // ❤ 这里调用的是 daemon 的 monitor_and_restart 方法
     match manager.monitor_and_restart(child).await {
         Ok(_) => {
             info!("进程监控结束");

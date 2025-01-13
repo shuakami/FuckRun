@@ -70,17 +70,14 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
             {
                 // Windows下启动一个独立的监控进程(monitor)
                 let monitor_program = std::env::current_exe()?;
-                info!("监控程序路径: {:?}", monitor_program);
                 
                 // 获取Python脚本的绝对路径
                 let process_dir = workspace.get_app_dir().join(&process_name);
                 let process_dir = std::fs::canonicalize(&process_dir)
                     .context("无法获取进程目录的绝对路径")?;
-                info!("进程目录(绝对路径): {:?}", process_dir);
                 
                 // 获取配置文件的绝对路径
                 let config_path = process_dir.join("config.yaml");
-                info!("配置文件路径: {:?}", config_path);
                 
                 let mut monitor_args = vec![
                     "monitor".to_string(),
@@ -109,7 +106,6 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
                 monitor_args.push(workspace.get_root_dir().to_string_lossy().to_string());
 
                 if let Some(vars) = env_vars {
-                    info!("环境变量:");
                     for (key, value) in vars {
                         info!("  {}={}", key, value);
                         monitor_args.push("--env".to_string());
@@ -119,14 +115,6 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
 
                 if auto_restart {
                     monitor_args.push("--auto-restart".to_string());
-                }
-
-                info!("启动参数:");
-                info!("  程序: {:?}", monitor_program);
-                info!("  工作目录: {:?}", working_dir);
-                info!("  参数列表:");
-                for arg in &monitor_args {
-                    info!("    {}", arg);
                 }
 
                 let mut monitor_cmd = Command::new(monitor_program);
@@ -146,9 +134,7 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
                 // 保存monitor进程ID到状态文件
                 let mut current_state = ProcessState::load(&workspace, &process_name)
                     .unwrap_or_else(|_| state.clone());
-                info!("保存monitor_pid前的状态: {:?}", current_state);
                 current_state.monitor_pid = Some(pid as i32);
-                info!("设置monitor_pid后的状态: {:?}", current_state);
                 current_state.save(&workspace, &process_name)?;
 
                 // 等待进程初始化
@@ -311,7 +297,11 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
                             sleep(std::time::Duration::from_secs(3)).await;
 
                             // 加载完整的状态
-                            let current_state = ProcessState::load(&workspace, &process_name)?;
+                            let mut current_state = ProcessState::load(&workspace, &process_name)?;
+                            
+                            // 增加重启计数
+                            current_state.restart_count += 1;
+                            info!("进程重启次数: {}", current_state.restart_count);
 
                             // 获取python.exe的完整路径
                             let program = if cfg!(windows) {
@@ -339,9 +329,7 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
                                     child = new_child;
                                     if let Some(pid) = child.id() {
                                         info!("进程已重启, 新PID: {}", pid);
-                                        // 更新pid
-                                        let mut current_state = ProcessState::load(&workspace, &process_name)?;
-                                        info!("重启时当前状态: {:?}", current_state);
+                                        // 更新pid,保持重启计数
                                         current_state.pid = Some(pid as i32);
                                         // 不更新monitor_pid,保持原值
                                         info!("重启后更新状态: {:?}", current_state);

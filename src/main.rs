@@ -30,6 +30,11 @@ async fn main() -> Result<()> {
     let workspace = Workspace::new(cli.workspace.unwrap_or_else(|| std::path::PathBuf::from(".")));
     workspace.init()?;
     
+    // 如果是 list 命令,直接执行不需要加载配置
+    if let Commands::List = cli.command {
+        return commands::handle_list(&workspace).await;
+    }
+
     // 初始化日志系统
     let logger = Logger::new(workspace.clone());
     logger.init()?;
@@ -106,15 +111,6 @@ async fn main() -> Result<()> {
                 auto_restart,
                 config,
             } => {
-                info!("处理Monitor命令");
-                info!("进程名称: {}", process_name);
-                info!("程序: {}", program);
-                info!("参数: {:?}", args);
-                info!("工作目录: {:?}", working_dir);
-                info!("环境变量: {:?}", env_vars);
-                info!("自动重启: {}", auto_restart);
-                info!("配置文件: {:?}", config);
-
                 // 获取配置文件的绝对路径
                 let config = std::fs::canonicalize(&config)
                     .context(format!("无法获取配置文件的绝对路径: {:?}", config))?;
@@ -153,6 +149,9 @@ async fn main() -> Result<()> {
                     follow,
                     date,
                 ).await?;
+            }
+            Commands::List => {
+                // 已在前面处理
             }
         }
         Ok(())

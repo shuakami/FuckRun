@@ -1,1 +1,1 @@
-{"pid":null,"monitor_pid":null,"program":"python","args":["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"],"working_dir":".","port":5000,"health_check_url":"http://localhost:5000/health"}
+{"pid":null,"monitor_pid":null,"program":"python","args":["\\\\?\\F:\\Luoxiaohei\\FuckRun\\app\\web\\app.py"],"working_dir":".","port":5000,"health_check_url":"http://localhost:5000/health","restart_count":0}

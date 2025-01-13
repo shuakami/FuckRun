@@ -53,7 +53,7 @@ impl Logger {
 
         // 配置控制台输出
         let stdout = ConsoleAppender::builder()
-            .encoder(Box::new(PatternEncoder::new("[{h({l})}] [{t}] {f}:{L} - {m}{n}")))
+            .encoder(Box::new(PatternEncoder::new("[{l}] {f}:{L} - {m}{n}")))
             .build();
 
         // 配置主日志文件
@@ -66,7 +66,7 @@ impl Logger {
         );
 
         let main_appender = RollingFileAppender::builder()
-            .encoder(Box::new(PatternEncoder::new("{d} [{l}] [{t}] {f}:{L} - {m}{n}")))
+            .encoder(Box::new(PatternEncoder::new("{d} [{l}] {f}:{L} - {m}{n}")))
             .append(true)  // 追加模式
             .build(main_log, Box::new(main_policy))?;
 
@@ -92,7 +92,6 @@ impl Logger {
                 .ok();
         }
 
-        info!("日志系统初始化完成");
         Ok(())
     }
 
@@ -115,7 +114,6 @@ impl Logger {
             .write(true)
             .open(&stderr_log)?;
 
-        info!("为进程 {} 创建日志文件", process_name);
         Ok((stdout_log, stderr_log))
     }
 

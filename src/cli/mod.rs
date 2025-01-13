@@ -122,4 +122,6 @@ pub enum Commands {
         #[arg(short, long)]
         date: Option<String>,
     },
+    /// 列出所有运行中的进程
+    List,
 } 

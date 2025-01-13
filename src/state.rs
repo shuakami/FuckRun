@@ -14,6 +14,7 @@ pub struct ProcessState {
     pub working_dir: PathBuf,
     pub port: u16,
     pub health_check_url: Option<String>,
+    pub restart_count: u32,  // 添加重启次数字段
 }
 
 impl Default for ProcessState {
@@ -26,6 +27,7 @@ impl Default for ProcessState {
             working_dir: PathBuf::from("."),
             port: 5000,
             health_check_url: None,
+            restart_count: 0,  // 初始化为0
         }
     }
 }
@@ -40,6 +42,7 @@ impl ProcessState {
             working_dir,
             port,
             health_check_url: None,
+            restart_count: 0,  // 初始化为0
         }
     }
 
@@ -78,5 +81,15 @@ impl ProcessState {
         } else {
             Ok(()) // 忽略文件不存在的错误
         }
+    }
+
+    /// 增加重启次数
+    pub fn increment_restart_count(&mut self) {
+        self.restart_count += 1;
+    }
+
+    /// 重置重启次数
+    pub fn reset_restart_count(&mut self) {
+        self.restart_count = 0;
     }
 } 

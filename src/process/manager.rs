@@ -4,7 +4,7 @@ use std::fs;
 use std::path::PathBuf;
 use anyhow::{Result, Context};
 use log::{info, error, warn};
-use tokio::process::Command;
+use tokio::process::{Child, Command};
 use tokio::io::{BufReader, AsyncBufReadExt};
 use tokio::time::sleep;
 use tokio::sync::mpsc;
@@ -278,24 +278,7 @@ impl<'a> ProcessManager<'a> {
         let port = state.port;
         info!("当前进程使用端口: {}", port);
 
-        // 先停止用户进程
-        if let Some(pid) = state.pid {
-            info!("检查用户进程 {} 是否存在", pid);
-            let exists = self.check_process_exists(pid).await?;
-            if exists {
-                info!("正在停止 PID 为 {} 的用户进程", pid);
-                if !self.try_graceful_shutdown(pid).await {
-                    info!("优雅终止失败，将强制终止进程");
-                    self.force_shutdown(pid).await?;
-                }
-            } else {
-                info!("用户进程 {} 已不存在", pid);
-            }
-        } else {
-            info!("没有找到运行中的用户进程");
-        }
-
-        // 再停止monitor进程
+        // 先停止monitor进程
         if let Some(monitor_pid) = state.monitor_pid {
             info!("检查监控进程 {} 是否存在", monitor_pid);
             let exists = self.check_process_exists(monitor_pid).await?;
@@ -332,9 +315,28 @@ impl<'a> ProcessManager<'a> {
             info!("没有找到运行中的监控进程");
         }
 
+        // 再停止用户进程
+        if let Some(pid) = state.pid {
+            info!("检查用户进程 {} 是否存在", pid);
+            let exists = self.check_process_exists(pid).await?;
+            if exists {
+                info!("正在停止 PID 为 {} 的用户进程", pid);
+                if !self.try_graceful_shutdown(pid).await {
+                    info!("优雅终止失败，将强制终止进程");
+                    self.force_shutdown(pid).await?;
+                }
+            } else {
+                info!("用户进程 {} 已不存在", pid);
+            }
+        } else {
+            info!("没有找到运行中的用户进程");
+        }
+
         self.cleanup_port(port).await?;
 
         let mut state = state;
+        // 重置重启计数
+        state.restart_count = 0;
         state.update_stopped_state();
         state.save(self.workspace, &self.process_name)
             .context("更新进程状态失败")?;

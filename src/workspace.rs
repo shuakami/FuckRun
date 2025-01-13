@@ -107,6 +107,11 @@ impl Workspace {
         &self.fuckrun_dir
     }
 
+    /// 获取进程管理目录
+    pub fn get_processes_dir(&self) -> PathBuf {
+        self.fuckrun_dir.join("processes")
+    }
+
     /// 确保进程目录结构存在
     pub fn ensure_process_dirs(&self, process_name: &str) -> Result<()> {
         let process_dir = self.get_process_dir(process_name);

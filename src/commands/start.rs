@@ -19,7 +19,6 @@ pub async fn handle_start(
         // 从配置文件获取进程配置
         match config.get_process_config(&name) {
             Some(process_config) => {
-                info!("找到进程配置: {:?}", process_config);
                 let mut manager = ProcessManager::with_config(
                     workspace,
                     name.clone(),
