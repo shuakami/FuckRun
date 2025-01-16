@@ -18,7 +18,13 @@ pub async fn handle_start(
         info!("启动进程: {}", name);
         // 从配置文件获取进程配置
         match config.get_process_config(&name) {
-            Some(process_config) => {
+            Some(mut process_config) => {
+                // 检查Python解释器
+                if cfg!(windows) && process_config.program.contains("python.exe") {
+                    info!("检测到python.exe，使用py启动器替代");
+                    process_config.program = String::from("py");
+                }
+
                 let mut manager = ProcessManager::with_config(
                     workspace,
                     name.clone(),
@@ -32,10 +38,16 @@ pub async fn handle_start(
                 manager.set_daemon_mode(daemon);
 
                 // 启动进程
+                let working_dir = workspace.get_root_dir()
+                    .join("deployments")
+                    .join(&name)
+                    .join("app")
+                    .join(&name);
+                
                 manager.start(
                     &process_config.program,
                     &process_config.args,
-                    &process_config.working_dir,
+                    &working_dir,
                     process_config.health_check_url.as_deref(),
                     Some(&process_config.env),
                 ).await?;
@@ -68,6 +80,12 @@ pub async fn handle_start(
 
         // 启动进程
         let program = python.unwrap_or_else(|| "python".to_string());
+        // 检查Python解释器
+        let program = if cfg!(windows) && program.contains("python.exe") {
+            String::from("py")
+        } else {
+            program
+        };
         let args = vec!["-m".to_string(), "http.server".to_string(), port.unwrap_or(8000).to_string()];
         
         manager.start(

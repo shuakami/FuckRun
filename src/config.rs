@@ -90,11 +90,29 @@ pub struct GlobalConfig {
 impl Config {
     /// 从文件加载配置
     pub fn from_file<P: AsRef<Path>>(path: P) -> Result<Self> {
-        let path = path.as_ref();
+        let path_str = path.as_ref().to_string_lossy().to_string().replace('\\', "/");
+        let path = Path::new(&path_str);
+        log::info!("尝试加载配置文件: {:?}", path);
+        
         if !path.exists() {
+            log::error!("配置文件不存在: {:?}", path);
+            if let Some(parent) = path.parent() {
+                log::info!("父目录是否存在: {}", parent.exists());
+                if parent.exists() {
+                    log::info!("父目录内容:");
+                    if let Ok(entries) = fs::read_dir(parent) {
+                        for entry in entries {
+                            if let Ok(entry) = entry {
+                                log::info!("  - {:?}", entry.path().to_string_lossy().to_string().replace('\\', "/"));
+                            }
+                        }
+                    }
+                }
+            }
             return Err(anyhow::anyhow!("配置文件不存在: {}", path.display()));
         }
         
+        log::info!("配置文件存在，准备读取");
         let content = fs::read_to_string(path)
             .context("读取配置文件失败")?;
         
@@ -157,8 +175,7 @@ impl Config {
     pub fn find_config_file(process_name: Option<&str>, workspace: &crate::workspace::Workspace) -> PathBuf {
         if let Some(name) = process_name {
             // 1. 检查进程目录
-            let process_config = workspace.get_root_dir()
-                .join("app")
+            let process_config = workspace.get_app_dir()
                 .join(name)
                 .join("config.yaml");
             if process_config.exists() {

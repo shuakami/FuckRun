@@ -38,7 +38,11 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
     ) -> std::pin::Pin<Box<dyn std::future::Future<Output = Result<()>> + Send + '_>> {
         let process_name = self.process_name.clone();
         let auto_restart = self.auto_restart;
-        let program = program.to_string();
+        let program = if cfg!(windows) && program.contains("python.exe") {
+            String::from("py")
+        } else {
+            program.to_string()
+        };
         let args = args.to_vec();
         let working_dir = working_dir.clone();
         let health_check_url = health_check_url.map(String::from);
@@ -71,39 +75,65 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
                 // Windows下启动一个独立的监控进程(monitor)
                 let monitor_program = std::env::current_exe()?;
                 
-                // 获取Python脚本的绝对路径
-                let process_dir = workspace.get_app_dir().join(&process_name);
-                let process_dir = std::fs::canonicalize(&process_dir)
-                    .context("无法获取进程目录的绝对路径")?;
+                // 从工作区根目录构建绝对路径
+                let root_dir = workspace.get_root_dir();
+                info!("工作区根目录: {:?}", root_dir);
+                
+                let process_dir = root_dir
+                    .join("deployments")
+                    .join(&process_name)
+                    .join("app")
+                    .join(&process_name);
+                
+                info!("进程目录(构建): {:?}", process_dir);
                 
                 // 获取配置文件的绝对路径
                 let config_path = process_dir.join("config.yaml");
+                info!("配置文件路径(构建): {:?}", config_path);
+                
+                // 确保目录存在
+                if !process_dir.exists() {
+                    error!("进程目录不存在: {:?}", process_dir);
+                    return Err(anyhow::anyhow!("进程目录不存在: {:?}", process_dir));
+                }
+                
+                if !config_path.exists() {
+                    error!("配置文件不存在: {:?}", config_path);
+                    return Err(anyhow::anyhow!("配置文件不存在: {:?}", config_path));
+                }
                 
                 let mut monitor_args = vec![
                     "monitor".to_string(),
                     "--process-name".to_string(),
                     process_name.clone(),
-                    "--program".to_string(),
+                    "--program".to_string(), 
                     program.clone(),
                     "--config".to_string(),
                     config_path.to_string_lossy().to_string(),
                 ];
                 
                 // 修正Python脚本路径,使用绝对路径
-                for arg in &args {
-                    monitor_args.push("--arg".to_string());
-                    // 如果参数是Python脚本路径,使用绝对路径
-                    if arg.ends_with(".py") {
-                        let script_path = process_dir.join(std::path::Path::new(arg).file_name().unwrap());
+                let mut args_iter = args.iter().peekable();
+                while let Some(arg) = args_iter.next() {
+                    if arg == "--host" || arg == "--port" {
+                        // 处理参数对
+                        monitor_args.push(arg.clone());
+                        if let Some(value) = args_iter.next() {
+                            monitor_args.push(value.clone());
+                        }
+                    } else if arg.ends_with(".py") {
+                        let script_path = process_dir.join("app.py");
+                        monitor_args.push("--arg".to_string());
                         monitor_args.push(script_path.to_string_lossy().to_string());
                     } else {
+                        monitor_args.push("--arg".to_string());
                         monitor_args.push(arg.clone());
                     }
                 }
 
-                // 使用项目根目录作为工作目录
+                // 使用应用程序目录作为工作目录
                 monitor_args.push("--working-dir".to_string());
-                monitor_args.push(workspace.get_root_dir().to_string_lossy().to_string());
+                monitor_args.push(process_dir.to_string_lossy().to_string());
 
                 if let Some(vars) = env_vars {
                     for (key, value) in vars {
@@ -115,6 +145,12 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
 
                 if auto_restart {
                     monitor_args.push("--auto-restart".to_string());
+                }
+
+                // 打印完整的monitor参数
+                info!("监控进程启动参数:");
+                for (i, arg) in monitor_args.iter().enumerate() {
+                    info!("  参数 {}: {}", i, arg);
                 }
 
                 let mut monitor_cmd = Command::new(monitor_program);
@@ -323,6 +359,12 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
                                .stdout(Stdio::piped())
                                .stderr(Stdio::piped())
                                .stdin(Stdio::null());
+
+                            #[cfg(windows)]
+                            {
+                                use winapi::um::winbase::CREATE_NO_WINDOW;
+                                cmd.creation_flags(CREATE_NO_WINDOW);
+                            }
 
                             match cmd.spawn() {
                                 Ok(new_child) => {
