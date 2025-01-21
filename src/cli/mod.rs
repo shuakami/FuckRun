@@ -114,7 +114,7 @@ pub enum Commands {
         host: Option<String>,
 
         /// 端口号
-        #[arg(short, long)]
+        #[arg(short = 'P', long)]
         port: Option<u16>,
     },
 

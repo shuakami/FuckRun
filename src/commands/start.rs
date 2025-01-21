@@ -38,12 +38,9 @@ pub async fn handle_start(
                 manager.set_daemon_mode(daemon);
 
                 // 启动进程
-                let working_dir = workspace.get_root_dir()
-                    .join("deployments")
-                    .join(&name)
-                    .join("app")
+                let working_dir = workspace.get_app_dir()
                     .join(&name);
-                
+             
                 manager.start(
                     &process_config.program,
                     &process_config.args,

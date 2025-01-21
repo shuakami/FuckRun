@@ -75,21 +75,13 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
                 // Windows下启动一个独立的监控进程(monitor)
                 let monitor_program = std::env::current_exe()?;
                 
-                // 从工作区根目录构建绝对路径
-                let root_dir = workspace.get_root_dir();
-                info!("工作区根目录: {:?}", root_dir);
-                
-                let process_dir = root_dir
-                    .join("deployments")
-                    .join(&process_name)
-                    .join("app")
-                    .join(&process_name);
-                
-                info!("进程目录(构建): {:?}", process_dir);
+                // 使用传入的working_dir作为进程目录
+                let process_dir = working_dir;
+                info!("进程目录: {:?}", process_dir);
                 
                 // 获取配置文件的绝对路径
                 let config_path = process_dir.join("config.yaml");
-                info!("配置文件路径(构建): {:?}", config_path);
+                info!("配置文件路径: {:?}", config_path);
                 
                 // 确保目录存在
                 if !process_dir.exists() {
@@ -123,10 +115,10 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
                         }
                     } else if arg.ends_with(".py") {
                         let script_path = process_dir.join("app.py");
-                        monitor_args.push("--arg".to_string());
+                        monitor_args.push("--args".to_string());
                         monitor_args.push(script_path.to_string_lossy().to_string());
                     } else {
-                        monitor_args.push("--arg".to_string());
+                        monitor_args.push("--args".to_string());
                         monitor_args.push(arg.clone());
                     }
                 }
