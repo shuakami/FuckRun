@@ -8,6 +8,13 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use tokio::signal::ctrl_c;
 use crate::state::ProcessState;
+use crate::types::ProcessConfig;
+
+#[cfg(unix)]
+use nix::{
+    unistd::{fork, ForkResult, setsid},
+    sys::stat::Mode,
+};
 
 use super::manager::ProcessManager;
 

@@ -21,9 +21,10 @@ chrono = "0.4"
 async-trait = "0.1"  # 异步trait支持
 which = "4.4"  # 查找可执行文件路径
 prettytable-rs = "0.10"  # 表格输出
+nix = { version = "0.27", features = ["fs", "signal", "process", "user"] }
 
 [target.'cfg(unix)'.dependencies]
-nix = "0.27.1"  # Unix系统API
+nix = { version = "0.27.1", features = ["fs", "signal", "process", "user"] }
 
 [target.'cfg(windows)'.dependencies]
 windows = { version = "0.48", features = [
