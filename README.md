@@ -15,7 +15,7 @@ As your project grows and you run more processes, you might find yourself overwh
 - Sudden crashes without notifications
 - The hassle of manually restarting programs
 
-That’s where **FuckRun** steps in—streamlining everything into a well-organized system:
+That's where **FuckRun** steps in—streamlining everything into a well-organized system:
 - Manage all your processes from one place
 - Auto-record logs for every action
 - Instant notifications when something goes wrong
@@ -150,7 +150,7 @@ processes:
 fuckrun start -n web
 ```
 
-You’re done! Now, FuckRun will manage your program.
+You're done! Now, FuckRun will manage your program.
 
 Want to check the status of your program? Try these commands:
 ```bash
@@ -163,25 +163,31 @@ fuckrun logs -n web -f
 
 ## What's Next?
 
-- 👉 [Learn about all the commands](docs/commands.md)
-- 👉 [Complete guide to the configuration file](docs/config.md)
-- 👉 [Health check configuration tutorial](docs/health-check.md)
-- 👉 [Common troubleshooting solutions](docs/troubleshooting.md)
+- 👉 [Learn about all the commands](docs/commands_en.md)
+- 👉 [Complete guide to the configuration file](docs/config_en.md)
+- 👉 [Health check configuration tutorial](docs/health-check_en.md)
+- 👉 [Common troubleshooting solutions](docs/troubleshooting_en.md)
+
+> For Chinese documentation:
+> - 👉 [命令使用指南](docs/commands.md)
+> - 👉 [配置文件完整指南](docs/config.md)
+> - 👉 [健康检查配置教程](docs/health-check.md)
+> - 👉 [常见问题解决方案](docs/troubleshooting.md)
 
 ## Understanding How FuckRun Works 🔍
 
 > Knowing how FuckRun operates will help you use it more effectively.
 
-The core concept behind **FuckRun** is simple: it’s like a caretaker for your programs. Here's how it works:
+The core concept behind **FuckRun** is simple: it's like a caretaker for your programs. Here's how it works:
 
 1. **Starting Programs**: When you instruct **FuckRun** to start a program:
    - It creates an independent process to run your program
    - Collects the program's output into log files
-   - Records the program’s status (PID, start time, etc.)
+   - Records the program's status (PID, start time, etc.)
 
 2. **Monitoring**: While the program runs, **FuckRun** will:
    - Regularly check if the program is still running
-   - Log the program’s output
+   - Log the program's output
    - Alert you immediately if something goes wrong
 
 3. **Auto Recovery**: If the program encounters an issue, **FuckRun** will:
@@ -189,7 +195,7 @@ The core concept behind **FuckRun** is simple: it’s like a caretaker for your 
    - Attempt to restart the program
    - Notify you of what happened
 
-Here’s an overview of the process:
+Here's an overview of the process:
 ```ascii
 [Your Program] <─────┐
                     │
@@ -274,4 +280,4 @@ fuckrun logs -n web -n 100
 Want to know more commands? You can:
 - Run `fuckrun help` to see all commands
 - Run `fuckrun help <command>` to get help on specific commands
-- Check out the [full command documentation](docs/commands.md)
+- Check out the [full command documentation](docs/commands_en.md)
