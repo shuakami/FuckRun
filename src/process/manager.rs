@@ -362,9 +362,9 @@ impl<'a> ProcessManager<'a> {
 
         #[cfg(unix)]
         {
-            use nix::sys::signal::{kill, Signal};
             use nix::unistd::Pid;
-            Ok(kill(Pid::from_raw(pid), Signal::SIGZERO).is_ok())
+            use nix::sys::signal::{kill, Signal};
+            Ok(kill(Pid::from_raw(pid), None).is_ok())
         }
     }
 
@@ -412,9 +412,9 @@ impl<'a> ProcessManager<'a> {
 
                     #[cfg(unix)]
                     {
-                        use nix::sys::signal::{kill, Signal};
                         use nix::unistd::Pid;
-                        if kill(Pid::from_raw(pid), Signal::SIGZERO).is_ok() {
+                        use nix::sys::signal::{kill, Signal};
+                        if kill(Pid::from_raw(pid), None).is_ok() {
                             info!("进程正在运行");
                             if let Some(url) = health_check_url {
                                 info!("检查健康状态: {}", url);
