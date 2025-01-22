@@ -346,8 +346,10 @@ async fn get_process_info(pid: i32) -> Result<(String, String, u64, String, f64,
 
 #[cfg(unix)]
 async fn get_process_info(pid: i32) -> Result<(String, String, u64, String, f64, String, u64)> {
+    use nix::unistd::Pid;
+    use nix::sys::signal::{kill, Signal};
     // 检查进程是否存在
-    if !nix::sys::signal::kill(nix::unistd::Pid::from_raw(pid), None).is_ok() {
+    if !kill(Pid::from_raw(pid), None).is_ok() {
         return Ok(("stopped".into(), "0".into(), 0, "0%".into(), 0.0, "0MB".into(), 0));
     }
 

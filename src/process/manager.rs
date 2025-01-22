@@ -491,9 +491,11 @@ impl<'a> ProcessManager<'a> {
         #[cfg(unix)]
         {
             info!("Unix 平台：发送 SIGTERM 信号");
-            match nix::sys::signal::kill(
-                nix::unistd::Pid::from_raw(pid),
-                nix::sys::signal::Signal::SIGTERM,
+            use nix::unistd::Pid;
+            use nix::sys::signal::{kill, Signal};
+            match kill(
+                Pid::from_raw(pid),
+                Signal::SIGTERM,
             ) {
                 Ok(()) => {
                     info!("已发送 SIGTERM 信号到进程 {}", pid);
@@ -531,9 +533,11 @@ impl<'a> ProcessManager<'a> {
         #[cfg(unix)]
         {
             info!("Unix 平台：发送 SIGKILL 信号");
-            nix::sys::signal::kill(
-                nix::unistd::Pid::from_raw(pid),
-                nix::sys::signal::Signal::SIGKILL,
+            use nix::unistd::Pid;
+            use nix::sys::signal::{kill, Signal};
+            kill(
+                Pid::from_raw(pid),
+                Signal::SIGKILL,
             ).context("发送 SIGKILL 信号失败")?;
         }
 
