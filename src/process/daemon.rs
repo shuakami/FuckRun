@@ -268,10 +268,11 @@ impl ProcessManagerDaemonExt for ProcessManager<'_> {
                                 if auto_restart {
                                     let monitor = ProcessManager {
                                         state,
-                                        workspace: workspace.clone(),
+                                        config: ProcessConfig::default(),
+                                        workspace: &workspace,
                                         process_name: process_name.clone(),
+                                        daemon_mode: false,
                                         auto_restart,
-                                        ..Default::default()
                                     };
                                     monitor.monitor_and_restart(child).await?;
                                 }
